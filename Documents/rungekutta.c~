@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include "integrator.h"
+
+//Defining FuncPtr
+//For now, it is just a dummy test function
+int myFun(int n, double t, const double *x, double *fx){
+  double data;
+  data = *x;
+  *fx = data+2;  
+  return 0;
+}
+
+//Defining a new integrator object
+struct integrator_t{
+  int n;
+  double dt;
+  FuncPtr rhs;
+};
+
+//Returning a new integrator object
+Integrator *integrator_new(int n, double dt, FuncPtr rhs){
+  Integrator *intNew = malloc(sizeof(Integrator));
+  intNew->n = n;
+  intNew->dt = dt;
+  intNew->rhs = rhs;
+  return intNew;
+ }
+
+void integrator_free(Integrator *integrator){
+free(integrator);
+}
+
+int integrator_step(Integrator *integrator, double t, double *x){
+  FuncPtr thisCalc = integrator->rhs;
+  double dt = integrator->dt;
+  int n = integrator->n;
+  double fx[n];
+  int i;
+  for(i=0;i<n;i++){
+    fx[i]=x[i];
+  }
+  thisCalc(integrator->n,t,x,fx);
+  double k1[2] = fx;
+  //thisCalc(integrator->n,t+dt/2,x
+  x[0]=x[0]+dt*fx[0];
+  x[1]=x[1]+dt*fx[1];
+  return 0;
+}

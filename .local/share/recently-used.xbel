@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbel version="1.0"
+      xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks"
+      xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info"
+>
+  <bookmark href="file:///home/smcdonald/Documents/integrator.c" added="2014-09-26T03:27:42Z" modified="2014-09-26T05:06:10Z" visited="2014-09-26T03:27:43Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-26T05:06:10Z" count="5"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/integrator.h" added="2014-09-26T03:58:39Z" modified="2014-09-26T05:11:40Z" visited="2014-09-26T03:58:39Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-26T05:11:40Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/integrator2.c" added="2014-09-26T18:51:07Z" modified="2014-09-30T19:34:12Z" visited="2014-09-26T18:51:08Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T19:34:12Z" count="16"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/a.out" added="2014-09-26T19:48:19Z" modified="2014-09-26T19:48:33Z" visited="2014-09-26T19:48:20Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="application/octet-stream"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-26T19:48:33Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/hello.c" added="2014-09-26T19:48:45Z" modified="2014-09-26T19:48:45Z" visited="2014-09-26T19:48:45Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-26T19:48:45Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents" added="2014-09-26T20:02:04Z" modified="2014-09-26T20:02:04Z" visited="2014-09-26T20:02:04Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="inode/directory"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-26T20:02:04Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/duffing" added="2014-09-27T04:50:02Z" modified="2014-09-30T01:01:01Z" visited="2014-09-27T04:50:02Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="application/octet-stream"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T01:01:01Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/duffing.c" added="2014-09-27T04:50:50Z" modified="2014-10-01T00:40:18Z" visited="2014-09-27T04:50:50Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T20:34:43Z" count="10"/>
+          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2014-10-01T00:40:18Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/rungekutta.c" added="2014-09-28T01:55:11Z" modified="2014-09-30T05:23:22Z" visited="2014-09-28T01:55:11Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T05:23:22Z" count="6"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/adamsbash.c" added="2014-09-28T03:55:00Z" modified="2014-09-30T23:50:26Z" visited="2014-09-28T03:55:00Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T23:50:26Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/rungekutta2.c" added="2014-09-30T02:41:50Z" modified="2014-09-30T21:13:06Z" visited="2014-09-30T02:41:51Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T21:13:06Z" count="4"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/Makefile" added="2014-09-30T04:16:58Z" modified="2014-10-12T21:43:49Z" visited="2014-09-30T04:16:58Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-makefile"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-12T21:43:49Z" count="7"/>
+          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2014-10-01T00:40:25Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/integrator" added="2014-09-30T04:48:45Z" modified="2014-09-30T04:48:45Z" visited="2014-09-30T04:48:45Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="application/octet-stream"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T04:48:45Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/euler.c" added="2014-09-30T19:43:31Z" modified="2014-10-01T00:39:48Z" visited="2014-09-30T19:43:31Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T23:48:45Z" count="3"/>
+          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2014-10-01T00:39:48Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/rk4.c" added="2014-09-30T21:13:26Z" modified="2014-10-11T17:58:12Z" visited="2014-09-30T21:13:26Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-09-30T21:13:26Z" count="1"/>
+          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2014-10-01T00:40:10Z" count="1"/>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T17:58:12Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/ab2.c" added="2014-10-01T00:06:22Z" modified="2014-10-13T18:35:57Z" visited="2014-10-01T00:06:22Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-csrc"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-13T18:35:57Z" count="3"/>
+          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2014-10-01T00:39:55Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW1/README.txt" added="2014-10-01T01:03:00Z" modified="2014-10-01T01:03:04Z" visited="2014-10-01T01:03:00Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/plain"/>
+        <bookmark:groups>
+          <bookmark:group>gedit</bookmark:group>
+        </bookmark:groups>
+        <bookmark:applications>
+          <bookmark:application name="gedit" exec="&apos;gedit %u&apos;" modified="2014-10-01T01:03:04Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/README" added="2014-10-01T01:04:05Z" modified="2014-10-01T01:04:45Z" visited="2014-10-01T01:04:05Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="application/octet-stream"/>
+        <bookmark:groups>
+          <bookmark:group>gedit</bookmark:group>
+        </bookmark:groups>
+        <bookmark:applications>
+          <bookmark:application name="gedit" exec="&apos;gedit %u&apos;" modified="2014-10-01T01:04:05Z" count="2"/>
+          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2014-10-01T01:04:45Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///tmp/README" added="2014-10-01T01:05:25Z" modified="2014-10-01T01:05:25Z" visited="2014-10-01T01:05:25Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/plain"/>
+        <bookmark:groups>
+          <bookmark:group>gedit</bookmark:group>
+        </bookmark:groups>
+        <bookmark:applications>
+          <bookmark:application name="gedit" exec="&apos;gedit %u&apos;" modified="2014-10-01T01:05:25Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/model.h" added="2014-10-11T05:49:16Z" modified="2014-10-11T05:49:19Z" visited="2014-10-11T05:49:17Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:groups>
+          <bookmark:group>gedit</bookmark:group>
+        </bookmark:groups>
+        <bookmark:applications>
+          <bookmark:application name="nautilus" exec="&apos;gedit %U&apos;" modified="2014-10-11T05:49:16Z" count="1"/>
+          <bookmark:application name="gedit" exec="&apos;gedit %u&apos;" modified="2014-10-11T05:49:19Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/euler.cc" added="2014-10-11T06:00:55Z" modified="2014-10-11T23:43:11Z" visited="2014-10-11T06:00:56Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="nautilus" exec="&apos;/usr/bin/emacs24 %F&apos;" modified="2014-10-11T06:02:28Z" count="3"/>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T06:01:15Z" count="1"/>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-11T23:43:11Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/euler.h" added="2014-10-11T06:01:55Z" modified="2014-10-11T06:02:49Z" visited="2014-10-11T06:01:56Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T06:02:49Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/integrator.h" added="2014-10-11T17:51:25Z" modified="2014-10-11T17:51:25Z" visited="2014-10-11T17:51:25Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T17:51:25Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/rk4.h" added="2014-10-11T17:52:16Z" modified="2014-10-11T17:52:16Z" visited="2014-10-11T17:52:16Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T17:52:16Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/rungekutta4.h" added="2014-10-11T17:53:38Z" modified="2014-10-15T03:09:18Z" visited="2014-10-11T17:53:38Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T17:53:38Z" count="1"/>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:09:18Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///Makefile" added="2014-10-11T23:09:40Z" modified="2014-10-11T23:09:40Z" visited="2014-10-11T23:09:40Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-makefile"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T23:09:40Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/Makefile" added="2014-10-11T23:22:18Z" modified="2014-10-15T03:28:53Z" visited="2014-10-11T23:22:18Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-makefile"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs24" exec="&apos;emacs24 %u&apos;" modified="2014-10-11T23:22:18Z" count="1"/>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:28:53Z" count="8"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/rungekutta4.cc" added="2014-10-11T23:34:51Z" modified="2014-10-15T03:09:59Z" visited="2014-10-11T23:34:51Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:09:59Z" count="6"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/duffing_solve.cc" added="2014-10-11T23:57:13Z" modified="2014-10-14T06:57:54Z" visited="2014-10-11T23:57:13Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-14T06:57:54Z" count="7"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/duffing.h" added="2014-10-12T00:16:40Z" modified="2014-10-13T20:06:22Z" visited="2014-10-12T00:16:40Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-13T20:06:22Z" count="4"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/lorenz.h" added="2014-10-12T00:19:06Z" modified="2014-10-14T20:27:49Z" visited="2014-10-12T00:19:07Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-14T20:27:49Z" count="9"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/duffing.cc" added="2014-10-12T00:51:03Z" modified="2014-10-14T20:29:05Z" visited="2014-10-12T00:51:03Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-14T20:29:05Z" count="8"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/lorenz.cc" added="2014-10-12T00:53:57Z" modified="2014-10-15T03:49:09Z" visited="2014-10-12T00:53:57Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:49:09Z" count="7"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/lorenz_solve.cc" added="2014-10-12T02:35:17Z" modified="2014-10-12T22:57:02Z" visited="2014-10-12T02:35:17Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-12T22:57:02Z" count="5"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/makefile" added="2014-10-12T21:56:27Z" modified="2014-10-12T21:56:27Z" visited="2014-10-12T21:56:27Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-makefile"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-12T21:56:27Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/registry_example.cc" added="2014-10-12T22:32:46Z" modified="2014-10-12T22:32:46Z" visited="2014-10-12T22:32:46Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-12T22:32:46Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/duffing.o" added="2014-10-12T22:39:04Z" modified="2014-10-12T22:39:04Z" visited="2014-10-12T22:39:04Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="application/x-object"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-12T22:39:04Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/lorenz_solve" added="2014-10-12T22:45:40Z" modified="2014-10-12T22:45:40Z" visited="2014-10-12T22:45:40Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="application/octet-stream"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-12T22:45:40Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/AdamsBashforth" added="2014-10-13T18:34:56Z" modified="2014-10-13T18:34:56Z" visited="2014-10-13T18:34:56Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="application/octet-stream"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-13T18:34:56Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/AdamsBashforth.h" added="2014-10-13T18:35:08Z" modified="2014-10-15T03:05:20Z" visited="2014-10-13T18:35:09Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:05:20Z" count="5"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/AdamsBashforth.cc" added="2014-10-13T18:40:42Z" modified="2014-10-15T03:07:09Z" visited="2014-10-13T18:40:42Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:07:09Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/LinearOscillator.h" added="2014-10-13T19:59:43Z" modified="2014-10-15T03:03:07Z" visited="2014-10-13T19:59:43Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:03:07Z" count="4"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///home/smcdonald/Documents/LinearOscillator.cc" added="2014-10-14T01:14:07Z" modified="2014-10-14T01:14:24Z" visited="2014-10-14T01:14:08Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-14T01:14:24Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/ode_solve.cc" added="2014-10-14T14:37:35Z" modified="2014-10-15T03:20:56Z" visited="2014-10-14T14:37:35Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:20:56Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/linearoscillator.cc" added="2014-10-14T18:02:30Z" modified="2014-10-15T03:03:59Z" visited="2014-10-14T18:02:30Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:03:59Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/solver.cc" added="2014-10-14T19:03:38Z" modified="2014-10-15T03:12:51Z" visited="2014-10-14T19:03:38Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:12:51Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/test_convergence.cc" added="2014-10-15T00:53:18Z" modified="2014-10-15T02:57:05Z" visited="2014-10-15T00:53:18Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T02:57:05Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/linear-oscillator.h" added="2014-10-15T03:03:32Z" modified="2014-10-15T03:03:32Z" visited="2014-10-15T03:03:32Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:03:32Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/linear-oscillator.cc" added="2014-10-15T03:04:16Z" modified="2014-10-15T03:04:16Z" visited="2014-10-15T03:04:17Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:04:16Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/adams-bashforth.h" added="2014-10-15T03:06:54Z" modified="2014-10-15T03:06:54Z" visited="2014-10-15T03:06:55Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:06:54Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/adams-bashforth.cc" added="2014-10-15T03:07:21Z" modified="2014-10-15T03:46:21Z" visited="2014-10-15T03:07:21Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:46:21Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/runge-kutta.h" added="2014-10-15T03:09:42Z" modified="2014-10-15T03:09:42Z" visited="2014-10-15T03:09:42Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-chdr"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:09:42Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/runge-kutta.cc" added="2014-10-15T03:10:42Z" modified="2014-10-15T03:10:42Z" visited="2014-10-15T03:10:43Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:10:42Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///mnt/hgfs/Virtual%20Machines/HW2/ode_solver.cc" added="2014-10-15T03:20:42Z" modified="2014-10-15T03:20:42Z" visited="2014-10-15T03:20:42Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="text/x-c++src"/>
+        <bookmark:applications>
+          <bookmark:application name="emacs" exec="&apos;emacs %u&apos;" modified="2014-10-15T03:20:42Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+</xbel>

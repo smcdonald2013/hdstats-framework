@@ -8,3 +8,9 @@ x = ols.OLS(indep, dep)
 x.fit_model()
 
 print x.fitted_model
+
+x.checks()
+
+#print x.acCheck
+
+
