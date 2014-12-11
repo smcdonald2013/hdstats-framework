@@ -22,8 +22,15 @@ def main():
             d.data=getArray()
         elif s=='2':
             d.error=getArray()
-        elif s=='3':
-            d.variableNames=None # To be implemented
+        elif s=='3': 
+            # Make a dictionary containing the list of variable names
+            filename=raw_input('Name of delimited ASCII file containing variable names?\n')
+            fp=open(filename)
+            firstline=fp.readline()
+            firstline=firstline.replace('\n','')
+            delim=raw_input('Delimiter?\n')
+            firstline.split(delim) 
+            d.variableNames=dict((firstline[i],i) for i in range(len(firstline)))
         elif s=='4':
             # Assign independent Variable
             n=None
