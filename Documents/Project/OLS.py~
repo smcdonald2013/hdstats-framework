@@ -1,5 +1,0 @@
-class OLS:
-    """Implements ordinary least squares regression, with assumption checks"""
-    def _init_(self, indepVar, depVar):
-        self.dependentVar = depVar
-        self.independentVar = indepVar
