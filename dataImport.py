@@ -14,14 +14,16 @@ def main(dataset):
         elif s=='2':
             dataset.error=getArray()
         elif s=='3': 
-            # Make a dictionary containing the list of variable names
+            # Make dictionaries mapping from variable names to column numbers, and vice versa
             filename=raw_input('Name of delimited ASCII file containing variable names?\n')
             fp=open(filename)
             firstline=fp.readline()
             firstline=firstline.replace('\n','')
             delim=raw_input('Delimiter?\n')
-            firstline.split(delim) 
-            dataset.variableNames=dict((firstline[i],i) for i in range(len(firstline)))
+            firstline=firstline.split(delim)
+            dataset.variableNameToNumber=dict((firstline[i],i) for i in range(len(firstline)))
+            dataset.variableNumberToName={y: x for x, y in dataset.variableNameToNumber.items()}
+            fp.close()
         elif s=='4':
             # Assign independent Variable
             n=None

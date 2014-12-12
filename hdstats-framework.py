@@ -3,11 +3,13 @@ import dataCleaning
 import dataAnalysis
 
 class Dataset(object):
-    def __init__(self, data=None, error=None, variableNames=None, independentVariable=None):
+    def __init__(self, data=None, error=None, variableNameToNumber=None, variableNumberToName=None, independentVariable=None):
         self.data=data   # Numpy array containing full dataset
-        self.error=error # Numpy array containing errors for each data point (optional)
-        self.variableNames=variableNames # Dictonary containing variable names (optional)
-        self.independentVariable=independentVariable # Column number of independent variable (optional)
+        # Optional:
+        self.error=error # Numpy array containing errors for each data point
+        self.variableNameToNumber=variableNameToNumber # Dictonary mapping from variable names to column numbers 
+        self.variableNumberToName=variableNumberToName # Dictonary mapping from column numbers to variable names
+        self.independentVariable=independentVariable # Column number of independent variable
 
 
 # Create dataset object
