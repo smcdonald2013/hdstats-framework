@@ -1,16 +1,7 @@
 import numpy as np
 
-class Dataset(object):
-    def __init__(self, data=None, error=None, variableNames=None, independentVariable=None):
-        self.data=data   # Numpy array containing full dataset
-        self.error=error # Numpy array containing errors for each data point (optional)
-        self.variableNames=variableNames # Dictonary containing variable names (optional)
-        self.independentVariable=independentVariable # Column number of independent variable (optional) 
 
-
-def main():
-    # Create dataset object
-    d=Dataset()
+def main(dataset):
 
     # Import data
     while True:
@@ -19,9 +10,9 @@ def main():
         if s=='0' or s=='': 
             break 
         elif s=='1':
-            d.data=getArray()
+            dataset.data=getArray()
         elif s=='2':
-            d.error=getArray()
+            dataset.error=getArray()
         elif s=='3': 
             # Make a dictionary containing the list of variable names
             filename=raw_input('Name of delimited ASCII file containing variable names?\n')
@@ -30,16 +21,16 @@ def main():
             firstline=firstline.replace('\n','')
             delim=raw_input('Delimiter?\n')
             firstline.split(delim) 
-            d.variableNames=dict((firstline[i],i) for i in range(len(firstline)))
+            dataset.variableNames=dict((firstline[i],i) for i in range(len(firstline)))
         elif s=='4':
             # Assign independent Variable
             n=None
             s=raw_input('Enter column number of independent variable (zero-indexed)\n')
             try: n=int(s)
             except: print('Input not an integer')
-            d.independentVariable=n
+            dataset.independentVariable=n
 
-    return d
+    return dataset
 
 
 
