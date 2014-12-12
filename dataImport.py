@@ -38,9 +38,11 @@ def main(dataset):
 
 def getArray():
     # Import numeric array
-    s=raw_input('Select file type to import numeric array:\n 1. Delimited ASCII (e.g. .csv)\n')
+    s=raw_input('Select file type to import numeric array:\n 1. Delimited ASCII (e.g. .csv)\n 2. Binary\n')
     if s=='1' or s=='': # default
         data=delimited()
+    elif s=='2':
+        data=binary()
     else:
         print('Input not recognized\n')
         return None
@@ -60,8 +62,14 @@ def delimited():
     delim=raw_input('Delimiter?\n')
     data=None
     try: data=np.genfromtxt(filename, delimiter=delim, dtype=float)
-    except: print('%s not found\n', filename)
+    except: print('%s: Invalid filename or delimiter\n', filename)
     return data
 
-
+def binary():
+    filename=raw_input('Name of binary file?\n')
+    datatype=raw_input('Data type? (e.g. float)\n')
+    data=None
+    try: data=np.fromfile(filename, dtype=datatype, count=-1, sep='')
+    except: print('%s: Invalid file name or data type\n', filename)
+    return data
 
