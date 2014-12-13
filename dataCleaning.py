@@ -21,7 +21,7 @@ def stdclean(dataset):
     # Remove outliers, column-wise
     for i in range(dataset.data.shape[1]):
         test = (dataset.data[:,i] > (dataset.data[:,i].mean() + n*dataset.data[:,i].std())) | (dataset.data[:,i] < (dataset.data[:,i].mean() - n*dataset.data[:,i].std()))
-        dataset.data[test,i]=np.nan
+        dataset.data[test,i] = np.nan
     return dataset
     
 
@@ -33,18 +33,23 @@ def pctclean(dataset):
     # Remove outliers, column-wise
     for i in range(dataset.data.shape[1]):
         test = (dataset.data[:,i] > np.percentile(dataset.data[:,i], 100-n)) | (dataset.data[:,i] < np.percentile(dataset.data[:,i], n))
-        dataset.data[test,i]=np.nan
+        dataset.data[test,i] = np.nan
     return dataset
 
 def removeNaNs(dataset):
-    s=raw_input('Select:\n 1. Replace NaNs with the variable mean\n 2. Replace  NaNs with interpolated values\n')
+    s=raw_input('Select:\n 1. Replace NaNs with the variable mean\n 2. Replace NaNs with interpolated values\n 3. Delete samples containing any NaN values\n')
     if s=='1' or s=='': # default
         for i in range(dataset.data.shape[1]):
             dataset.data[np.isnan(dataset.data[:,i]),i]=nanmean(dataset.data[:,i])
     elif s=='2':
         for i in range(dataset.data.shape[1]):
             for j in range(dataset.data.shape[0]) * np.isnan(dataset.data[:,i]):
-                dataset.data[j,i]=nanmean(dataset.data[(j-1):(j+1),i])
+                dataset.data[j,i] = nanmean(dataset.data[(j-1):(j+1),i])
+    elif s=='3':
+        test = True;
+        for i in range(dataset.data.shape[1]):
+            test = test * ~np.isnan(dataset.data[:,i])
+        dataset.data = dataset.data[test,:]
     else:
          print('Input not recognized\n')
 
