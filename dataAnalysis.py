@@ -7,14 +7,10 @@ import pca
 def main(dataset):
 
     while True:
-        s=raw_input('Select data analysis task:\n 1. Print data to screen\n 2. Regression\n 3. Diminsionality reduction\n 0. Exit\n')
+        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 0. Exit\n')
         if s=='0':
             break
         elif s=='1':
-            np.set_printoptions(precision=3, suppress=True)
-            print(dataset.data)
-            #return dataset
-        elif s=='2':
             if dataset.data.shape[0] < 100000:
                 print('Running OLS Regression')
                 reg = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #independent variable is assumed to be in the first column
@@ -34,7 +30,7 @@ def main(dataset):
                 reg.fit_model()
                 print('Regression summary', reg.fitted_model.coef_)
 
-        elif s=='3':
+        elif s=='2':
             print('Trying randomized PCA\n')
             dec=pca.RPCA(dataset.data)
             dec.fit_model()
@@ -45,7 +41,6 @@ def main(dataset):
 
         else:
             print('Input not recognized')
-            return dataset
 
 
 
