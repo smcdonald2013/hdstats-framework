@@ -7,7 +7,7 @@ import pca
 def main(dataset):
 
     while True:
-        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 0. Exit\n')
+        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering 0. Exit\n')
         if s=='0':
             break
         elif s=='1':
@@ -38,6 +38,24 @@ def main(dataset):
             print(dec.obj.components_)
             print('\n Explained Variance Ratio')
             print(dec.obj.explained_variance_ratio_)
+
+        elif s=='3':
+            s=raw_input('Number of categories? Enter zero if unknown\n')
+            try: n=int(s)
+            except: n=0
+            
+            if n>0 & dataset.data.shape[0] < 10000:
+                print('Known number of categories and <10k samples: Using KMeans clustering\n')
+                # Use KMeans clustering
+                # Followed by Spectral Clustering or GMM in event of failure
+            elif n>0:
+                print('Known number of categories and >10k samples: Using MiniBatch KMeans\n')
+                # Use MiniBatch KMeans
+            elif dataset.data.shape[0] < 10000:
+                print('Unknown number of categories and <10k samples: Using MeanShift')
+                # Use MeanShift or VBGMM
+            else:
+                print('Too many samples to analyze without knowing number of categories\n')
 
         else:
             print('Input not recognized')
