@@ -1,13 +1,12 @@
 from sklearn import decomposition
 
-class PCA:
+class RPCA:
     # Implements Principal Component Analysis
-
 
     def __init__(self, data):
         self.data = data
         self.dataTransformed = None
-        self.decObj = decompostion.RandomizedPCA()
+        self.obj = decomposition.RandomizedPCA()
 
     def fit_model(self):
-        self.dataTransformed = self.decObj.fit_transform(self.data)
+        self.dataTransformed = self.obj.fit_transform(self.data)
