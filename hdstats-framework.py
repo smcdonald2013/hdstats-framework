@@ -31,9 +31,15 @@ while True:
         while s!='0':
             s=raw_input('In: ')
             if '=' in s:
-                exec(s)
+                try:
+                    exec(s)
+                except Exception, e:
+                    print 'Error: %s' % e
             else:
-                print(eval(s))
+                try:
+                    print(eval(s))
+                except Exception, e:
+                    print 'Error: %s' % e
     else:
         print('Input not recognized')
 
