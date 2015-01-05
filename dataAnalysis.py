@@ -7,7 +7,7 @@ import pca
 def main(dataset):
 
     while True:
-        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering 0. Exit\n')
+        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering \n 0. Exit\n')
         if s=='0':
             break
         elif s=='1':
@@ -59,6 +59,8 @@ def main(dataset):
 
         else:
             print('Input not recognized')
+
+    return dataset
 
 
 
