@@ -8,8 +8,8 @@ import pca
 def main(dataset):
 
     while True:
-        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering\n 4. Classification\n 0. Exit\n')
-        if s=='0':
+        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering\n 4. Classification\n-0. Exit\n')
+        if s=='0' or s=='': # default
             break
         elif s=='1':
             if dataset.data.shape[0] < 100000:
@@ -32,13 +32,7 @@ def main(dataset):
                 print('Regression summary', reg.fitted_model.coef_)
 
         elif s=='2':
-            print('Trying randomized PCA\n')
-            dec=pca.RPCA(dataset.data)
-            dec.fit_model()
-            print('Components')
-            print(dec.obj.components_)
-            print('\n Explained Variance Ratio')
-            print(dec.obj.explained_variance_ratio_)
+            dataset=dimensionalityReduction(dataset)
 
         elif s=='3':
             s=raw_input('Number of categories? Enter zero if unknown\n')
@@ -75,4 +69,43 @@ def main(dataset):
 
 
 
+def dimensionalityReduction(dataset):
+    s=raw_input('Select dimensionality reduction method:\n-1. Randomized PCA\n 2. Standard PCA\n 3. Sparse PCA\n')
 
+    if s=='1' or s=='': # default
+        s1=raw_input('Number of components to keep? (default: number of variables)\n')
+        try: n_components=int(s1)
+        except: n_components=dataset.data.shape[1]
+
+        dec=pca.RPCA(dataset.data,n_components=n_components)
+
+    elif s=='2':
+        s1=raw_input('Number of components to keep? (default: all)\n')
+        try: n_components=int(s1)
+        except: n_components=dataset.data.shape[1]
+
+        dec=pca.PCA(dataset.data,n_components=n_components)
+
+    elif s=='3':
+        s1=raw_input('Number of sparse atoms to extract? (default: number of variables)\n')
+        try: n_components=int(s1)
+        except: n_components=dataset.data.shape[1]
+
+        s1=raw_input('Alpha? (Higher = more sparse. default: 1)\n')
+        try: alpha=float(s1)
+        except: alpha=1
+
+        dec=pca.SPCA(dataset.data,n_components=n_components, alpha=alpha)
+
+
+    try: dec.fit_model()
+    except Exception, e: print 'Error fitting model: %s' % e
+    try: dec.print_results()
+    except Exception, e: print 'Error: %s' % e
+
+#    dataset.dataTransformed = dec.dataTransformed
+
+    
+    return dataset
+
+ 
