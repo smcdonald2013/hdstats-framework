@@ -3,21 +3,29 @@ import statsmodels.stats.outliers_influence as oi
 import statsmodels.api as sm
 import numpy as np
 import sys
+import scipy
+import pandas
+
+import readline
+import pandas.rpy.common as com
+import rpy2.robjects as ro
+from rpy2.robjects.packages import importr
 
 class mcCheck:
-    #Tests for multicollinearity in the design matrix by performing VIF test on each dependent variable
+    #Tests for multicollinearity in the design matrix
 
-    def __init__(self, indepVar, depVar, residuals):
+    def __init__(self, indepVar, depVar=0, residuals=0):
         self.dependentVar = depVar
         self.independentVar = indepVar
         self.residuals = residuals
 
     def check(self):
         self.conNum = np.linalg.cond(self.independentVar)
-        self.nVars = self.independentVar.shape[1]
-        self.vif = np.empty(self.nVars)
-        for i in range(self.nVars-1):
-            self.vif[i] = oi.variance_inflation_factor(self.independentVar,i)
+        if self.dependentVar != 0:
+            self.nVars = self.independentVar.shape[1]
+            self.vif = np.empty(self.nVars)
+            for i in range(self.nVars-1):
+                self.vif[i] = oi.variance_inflation_factor(self.independentVar,i)
 
 class acCheck:
     #Tests for autocorrelation of the residuals using the durbin-watson test
@@ -89,3 +97,47 @@ class highdimCheck:
             self.hd = True
         else:
             self.hd = False
+
+class mvnCheck:
+    #Tests if the data come from a multivariate normal distribution
+    def __init__(self,data):
+        self.data = data
+
+    def check(self):
+        importr('psych')
+        pan_data = pandas.DataFrame(self.data)
+        r_data = com.convert_to_r_dataframe(pan_data)
+        ro.globalenv['r_data'] = r_data
+        ro.r('mardia_output = mardia(r_data, plot=FALSE)')
+        ro.r('pvals = c(mardia_output$p.skew, mardia_output$p.kurtosis)')
+        pan_data = com.load_data('pvals')
+        self.skewp = pan_data[0]
+        #self.kurp = pan_data[1] R mardia function does not currently implement kurtosis test
+
+class eqCovCheck:
+    #Tests if different classes have the same covariance matrix
+    
+    def __init__(self,data,classes):
+        self.data = data
+        self.classes = classes
+
+    def check(self):
+        importr('boxM')
+        pan_data = pandas.DataFrame(self.data)
+        pan_classes = pandas.DataFrame(self.classes)
+        r_data = com.convert_to_r_dataframe(pan_data)
+        r_classes = com.convert_to_r_dataframe(pan_classes)
+        ro.globalenv['r_data'] = r_data
+        ro.globalenv['r_classes'] = r_classes
+        ro.r('boxM_test = boxM(data=r_data,grouping=r_classes)')
+        ro.r('pvals = boxM_test$p.value')
+        pan_data = com.load_data('pvals')
+        self.boxMp = pan_data[0]
+
+class conIndCheck:
+    #Tests if the data variables are independent, conditional on the class labels. Note that since this test is only reliable if the underlying data are gaussian, it is really a correlation test
+
+    def __init__(self,data,classes):
+        self.data = data
+        self.classes = classes
+        self.bnlearn = importr('bnlearn')
