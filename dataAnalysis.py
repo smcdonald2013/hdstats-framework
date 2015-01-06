@@ -8,8 +8,8 @@ import pca
 def main(dataset):
 
     while True:
-        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering\n 4. Classification\n 0. Exit\n')
-        if s=='0':
+        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering\n 4. Classification\n-0. Exit\n')
+        if s=='0' or s=='': # default
             break
         elif s=='1':
             if dataset.data.shape[0] < 100000:

@@ -2,16 +2,19 @@ import numpy as np
 
 
 def main(dataset):
-    s=raw_input('Select data cleaning method:\n 1. Remove outliers by standard deviations from the mean\n 2. Remove outliers by percentile\n 3. Replace NaNs\n')
-    if s=='1' or s=='': # default
-        return stdclean(dataset)
-    elif s=='2':
-        return pctclean(dataset)
-    elif s=='3':
-        return removeNaNs(dataset)
-    else:
-        print('Input not recognized\n')
-        return dataset
+    while True:
+        s=raw_input('Select data cleaning method:\n 1. Remove outliers by standard deviations from the mean\n 2. Remove outliers by percentile\n 3. Replace NaNs\n-0. Exit\n')
+        if s=='0' or s=='': # default
+            break
+        elif s=='1':
+            dataset=stdclean(dataset)
+        elif s=='2':
+            dataset=pctclean(dataset)
+        elif s=='3':
+            dataset=removeNaNs(dataset)
+        else:
+            print('Input not recognized\n')
+    return dataset
 
 def stdclean(dataset):
     s=raw_input('Reject outliers how many standard deviations from the mean (default: 3)\n')
@@ -37,7 +40,7 @@ def pctclean(dataset):
     return dataset
 
 def removeNaNs(dataset):
-    s=raw_input('Select:\n 1. Replace NaNs with the variable mean\n 2. Replace NaNs with interpolated values\n 3. Delete samples containing any NaN values\n')
+    s=raw_input('Select:\n-1. Replace NaNs with the variable mean\n 2. Replace NaNs with interpolated values\n 3. Delete samples containing any NaN values\n')
     if s=='1' or s=='': # default
         for i in range(dataset.data.shape[1]):
             dataset.data[np.isnan(dataset.data[:,i]),i]=nanmean(dataset.data[:,i])
