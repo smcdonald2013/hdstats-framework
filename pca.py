@@ -11,7 +11,7 @@ class PCA:
 
         self.data = data
         self.dataTransformed = None
-        self.obj = decomposition.RandomizedPCA(n_components=self.n_components, copy=self.copy, whiten=self.whiten)
+        self.obj = decomposition.PCA(n_components=self.n_components, copy=self.copy, whiten=self.whiten)
 
     def fit_model(self):
         self.dataTransformed = self.obj.fit_transform(self.data)
@@ -78,4 +78,29 @@ class SPCA:
         print(np.sum(np.power(self.obj.error_,2)))
         print('\n')
 
+class ICA:
+    # Independent Component Analysis
+
+    def __init__(self, data, n_components=None, algorithm='parallel', whiten=True, fun='logcosh', fun_args=None, max_iter=200, tol=0.0001, w_init=None, random_state=None):
+        self.n_components=n_components
+        self.algorithm=algorithm
+        self.whiten=whiten
+        self.fun=fun
+        self.fun_args=fun_args
+        self.max_iter=max_iter
+        self.tol=tol
+        self.w_init=w_init
+        self.random_state=random_state
+
+        self.data = data
+        self.dataTransformed = None
+        self.obj = decomposition.FastICA(n_components=self.n_components, algorithm=self.algorithm, whiten=self.whiten, fun=self.fun, fun_args=self.fun_args, max_iter=self.max_iter, tol=self.tol, w_init=self.w_init, random_state=self.random_state)
+
+    def fit_model(self):
+        self.dataTransformed = self.obj.fit_transform(self.data)
+
+    def print_results(self):
+        print('\n Mixing matrix')
+        print(self.obj.mixing_)
+        print('\n')
 

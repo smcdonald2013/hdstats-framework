@@ -70,10 +70,10 @@ def main(dataset):
 
 
 def dimensionalityReduction(dataset):
-    s=raw_input('Select dimensionality reduction method:\n-1. Randomized PCA\n 2. Standard PCA\n 3. Sparse PCA\n')
+    s=raw_input('Select dimensionality reduction method:\n-1. Randomized PCA\n 2. Standard PCA\n 3. Sparse PCA\n 4. ICA\n')
 
     if s=='1' or s=='': # default
-        s1=raw_input('Number of components to keep? (default: number of variables)\n')
+        s1=raw_input('Number of components to keep? (default: all)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
@@ -96,6 +96,13 @@ def dimensionalityReduction(dataset):
         except: alpha=1
 
         dec=pca.SPCA(dataset.data,n_components=n_components, alpha=alpha)
+
+    elif s=='4': 
+        s1=raw_input('Number of components to use? (default: number of variables)\n')
+        try: n_components=int(s1)
+        except: n_components=dataset.data.shape[1]
+
+        dec=pca.ICA(dataset.data,n_components=n_components)
 
 
     try: dec.fit_model()
