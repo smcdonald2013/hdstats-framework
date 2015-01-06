@@ -30,10 +30,12 @@ while True:
     elif s=='4':
         dataVisualization.main(dataset)
     elif s=='5':
-        print('Type 0 to exit interpreter\n\n')
-        while s!='0':
+        print('Type \'0\' or  \'exit\' to exit interpreter\n\n')
+        while (s!='exit') & (s!='0'):
             s=raw_input('In: ')
-            if '=' in s:
+            if s=='':
+                pass
+            elif ('=' in s) or ('import' in s):
                 try:
                     exec(s)
                 except Exception, e:
