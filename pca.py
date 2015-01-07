@@ -17,11 +17,11 @@ class PCA:
         self.dataTransformed = self.obj.fit_transform(self.data)
 
     def print_results(self):
-        print('\n Components')
+        print '\n Components' 
         print(self.obj.components_)
-        print('\n Explained Variance Ratio')
+        print '\n Explained Variance Ratio'
         print(self.obj.explained_variance_ratio_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot first two prinicpal components against each other 
@@ -47,11 +47,11 @@ class RPCA:
         self.dataTransformed = self.obj.fit_transform(self.data)
 
     def print_results(self):
-        print('\n Components')
+        print '\n Components'
         print(self.obj.components_)
-        print('\n Explained Variance Ratio')
+        print '\n Explained Variance Ratio'
         print(self.obj.explained_variance_ratio_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot first two prinicpal components against each other
@@ -82,11 +82,11 @@ class SPCA:
         self.dataTransformed = self.obj.fit_transform(self.data)
 
     def print_results(self):
-        print('\n Components')
+        print '\n Components'
         print(self.obj.components_)
-        print('\n Sum squared error')
+        print '\n Sum squared error'
         print(np.sum(np.power(self.obj.error_,2)))
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot all components by sample number or against independent variable
@@ -115,9 +115,9 @@ class ICA:
         self.dataTransformed = self.obj.fit_transform(self.data)
 
     def print_results(self):
-        print('\n Mixing matrix')
+        print '\n Mixing matrix'
         print(self.obj.mixing_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot all components by sample number or against independent variable
@@ -147,11 +147,11 @@ class Isomap:
         self.dataTransformed = self.obj.fit_transform(self.data)
 
     def print_results(self): 
-        print('\n Distribution Matrix')
+        print '\n Distribution Matrix'
         print(self.obj.dist_matrix_)
-        print('\n Reconstruction Error')
+        print '\n Reconstruction Error'
         print(self.obj.reconstruction_error())
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot components against each other, if n_components=2
@@ -182,9 +182,9 @@ class LocallyLinearEmbedding:
         self.dataTransformed = self.obj.fit_transform(self.data)
 
     def print_results(self):
-        print('\n Reconstruction Error')
+        print '\n Reconstruction Error'
         print(self.obj.reconstruction_error_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot components against each other, if n_components=2
@@ -210,9 +210,9 @@ class SpectralEmbedding:
         self.dataTransformed = self.obj.fit_transform(self.data)
 
     def print_results(self):
-        print('\n Affinity Matrix')
+        print '\n Affinity Matrix'
         print(self.obj.affinity_matrix_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot components against each other, if n_components=2

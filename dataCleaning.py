@@ -17,7 +17,7 @@ def main(dataset):
         elif s=='5':
             dataset=devar(dataset)
         else:
-            print('Input not recognized\n')
+            print 'Input not recognized\n'
     return dataset
 
 def stdclean(dataset):
@@ -60,7 +60,7 @@ def removeNaNs(dataset):
             test = test * ~np.isnan(dataset.data[:,i])
         dataset.data = dataset.data[test,:]
     else:
-         print('Input not recognized\n')
+         print 'Input not recognized\n'
 
     return dataset
 

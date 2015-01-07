@@ -31,7 +31,7 @@ while True:
     elif s=='4':
         dataVisualization.main(dataset)
     elif s=='5':
-        print('Type \'0\' or  \'exit\' to exit interpreter\n\n')
+        print 'Type \'0\' or  \'exit\' to exit interpreter\n\n'
         while (s!='exit') & (s!='0'):
             s=raw_input('In: ')
             if s=='':
@@ -47,6 +47,6 @@ while True:
                 except Exception, e:
                     print 'Error: %s' % e
     else:
-        print('Input not recognized\n')
+        print 'Input not recognized\n'
 
 

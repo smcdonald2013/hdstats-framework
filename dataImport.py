@@ -29,14 +29,14 @@ def main(dataset):
             n=None
             s=raw_input('Enter column number of independent variable (zero-indexed)\n')
             try: n=int(s)
-            except: print('Input not an integer. Variable not set')
+            except: print 'Input not an integer. Variable not set'
             dataset.independentVariable=n
         elif s=='4':
             # Assign dependent Variable
             n=None
             s=raw_input('Enter column number of independent variable (zero-indexed)\n')
             try: n=int(s)
-            except: print('Input not an integer. Variable not set')
+            except: print 'Input not an integer. Variable not set'
             dataset.dependentVariable=n
 
     return dataset
@@ -51,7 +51,7 @@ def getArray():
     elif s=='2':
         data=binary()
     else:
-        print('Input not recognized\n')
+        print 'Input not recognized\n'
         return None
 
     # Store variables in columns by default
@@ -59,7 +59,7 @@ def getArray():
     if variablesAsColumns=='0':
         data=data.transpose()
     elif not (variablesAsColumns=='1' or variablesAsColumns==''):
-        print('Input not recognized\n')
+        print 'Input not recognized\n'
     return data
 
 

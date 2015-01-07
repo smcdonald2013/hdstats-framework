@@ -25,7 +25,7 @@ def main(dataset):
         elif s=='4':
             dataset=classification(dataset)
         else:
-            print('Input not recognized')
+            print 'Input not recognized\n'
     return dataset
 
 
@@ -71,19 +71,19 @@ def clusteringAnalysis(dataset):
         except: n=0
 
         if n>0 & dataset.data.shape[0] < 10000:
-            print('Known number of clusters and <10k samples: Using KMeans clustering\n')
+            print 'Known number of clusters and <10k samples: Using KMeans clustering\n'
             # Use KMeans clustering
             model=clustering.KMeans(dataset.data,n_clusters=n)
         elif n>0:
-            print('Known number of clusters and >10k samples: Using MiniBatch KMeans\n')
+            print 'Known number of clusters and >10k samples: Using MiniBatch KMeans\n'
             # Use MiniBatch KMeans
             model=clustering.MiniBatchKMeans(dataset.data,n_clusters=n)
         elif dataset.data.shape[0] < 10000:
-            print('Unknown number of clusters and <10k samples: Using MeanShift')
+            print 'Unknown number of clusters and <10k samples: Using MeanShift\n'
             # Use MeanShift
             model=clustering.MeanShift(dataset.data)
         else:
-            print('Too many samples to analyze without knowing number of categories\n')
+            print 'Too many samples to analyze without knowing number of categories\n'
 
     try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
@@ -167,10 +167,10 @@ def dimensionalityReduction(dataset):
         except: n_components=dataset.data.shape[1]
 
         if s1=='0':
-            print('Trying ICA')
+            print 'Trying ICA'
             model=pca.ICA(dataset.data,n_components=n_components)
         else:
-            print('Trying Randomized PCA')
+            print 'Trying Randomized PCA'
             model=pca.RPCA(dataset.data,n_components=n_components)
 
 

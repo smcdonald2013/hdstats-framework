@@ -23,9 +23,9 @@ class KMeans:
         self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
-        print('\n Cluster Centers')
+        print '\n Cluster Centers'
         print(self.obj.cluster_centers_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
@@ -56,9 +56,9 @@ class MiniBatchKMeans:
         self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
-        print('\n Cluster Centers')
+        print '\n Cluster Centers'
         print(self.obj.cluster_centers_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
@@ -82,9 +82,9 @@ class MeanShift:
         self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
-        print('\n Cluster Centers')
+        print '\n Cluster Centers'
         print(self.obj.cluster_centers_)
-        print('\n')
+        print '\n'
 
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
