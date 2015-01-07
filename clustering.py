@@ -126,3 +126,31 @@ class SpectralClustering:
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
         pass
+
+
+# Class to interface with DBSCAN (Density-Based Spatial Clustering of Applications with Noise) object from scikit-learn cluster module
+class DBSCAN:
+    def __init__(self, data, eps=0.5, min_samples=5, metric='euclidean', algorithm='auto', leaf_size=30, p=None, random_state=None):
+        self.eps=eps
+        self.min_samples=min_samples
+        self.metric=metric
+        self.algorithm=algorithm
+        self.leaf_size=leaf_size
+        self.p=p
+        self.random_state=random_state
+
+        self.data = data
+        self.result = None
+        self.dataTransformed = None
+        self.obj = cluster.DBSCAN(eps=self.eps, min_samples=self.min_samples, metric=self.metric, algorithm=self.algorithm, leaf_size=self.leaf_size, p=self.p, random_state=self.random_state)
+
+    def fit_model(self):
+        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+
+    def print_results(self):
+        pass
+
+    def plot_results(self):
+        # plot cluster centers along with all data, colored by nearest cluster
+        pass
+
