@@ -5,13 +5,13 @@ def main(dataset):
 
     # Import data
     while True:
-        s=raw_input('Select:\n  1. Import data array\n  2. Import uncertainty array (assumed 2-sigma, same dimensions as data array) \n  3. Import variable names\n  4. Assign independent variable\n  5. Assign dependent variable (optional)\n- 0. Exit\n')
-        
+        s=raw_input('Select:\n  1. Import data array\n  2. Import uncertainty array\t\t\t(optional) \n  3. Import variable names\t\t\t(optional)\n  4. Assign independent variable\t\t(optional)\n  5. Assign dependent variable\t\t\t(optional)\n- 0. Exit\n')
         if s=='0' or s=='': # default 
             break 
         elif s=='1':
             dataset.data=getArray()
         elif s=='2':
+            print 'Assumed 2-sigma, same dimensions as data array'
             dataset.error=getArray()
         elif s=='3': 
             # Make dictionaries mapping from variable names to column numbers, and vice versa
@@ -45,7 +45,7 @@ def main(dataset):
 
 def getArray():
     # Import numeric array
-    s=raw_input('Select file type to import numeric array:\n-1. Delimited ASCII (e.g. .csv)\n 2. Binary\n')
+    s=raw_input('Select file type to import numeric array:\n- 1. Delimited ASCII (e.g. .csv)\n  2. Binary\n')
     if s=='1' or s=='': # default
         data=delimited()
     elif s=='2':
@@ -55,7 +55,7 @@ def getArray():
         return None
 
     # Store variables in columns by default
-    variablesAsColumns=raw_input('Are variables stored as:\n 0. rows\n-1. columns\n')
+    variablesAsColumns=raw_input('Are variables stored as:\n  0. rows\n- 1. columns\n')
     if variablesAsColumns=='0':
         data=data.transpose()
     elif not (variablesAsColumns=='1' or variablesAsColumns==''):

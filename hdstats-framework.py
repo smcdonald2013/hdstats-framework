@@ -19,7 +19,7 @@ dataset=Dataset()
 
 
 while True:
-    s=raw_input('Select task:\n 1. Import\n 2. Data cleaning\n 3. Analysis\n 4. Visualization\n 5. Enter Python interpreter\n 0. Exit\n')
+    s=raw_input('Select task:\n  1. Import\n  2. Data cleaning\n  3. Analysis\n  4. Visualization\n  5. Enter Python interpreter\n  0. Exit\n')
     if s=='0':
         break
     elif s=='1':
@@ -47,6 +47,6 @@ while True:
                 except Exception, e:
                     print 'Error: %s' % e
     else:
-        print('Input not recognized')
+        print('Input not recognized\n')
 
 

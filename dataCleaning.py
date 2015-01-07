@@ -46,7 +46,7 @@ def pctclean(dataset):
     return dataset
 
 def removeNaNs(dataset):
-    s=raw_input('Select:\n-1. Replace NaNs with the variable mean\n 2. Replace NaNs with interpolated values\n 3. Delete samples containing any NaN values\n')
+    s=raw_input('Select:\n- 1. Replace NaNs with the variable mean\n  2. Replace NaNs with interpolated values\n  3. Delete samples containing any NaN values\n')
     if s=='1' or s=='': # default
         for i in range(dataset.data.shape[1]):
             dataset.data[np.isnan(dataset.data[:,i]),i]=nanmean(dataset.data[:,i])
