@@ -12,6 +12,8 @@ def main(dataset):
         if s=='0' or s=='': # default
             break
         elif s=='1':
+            dataset=regression(dataset)
+        elif s=='10':
             if dataset.data.shape[0] < 100000:
                 print('Running OLS Regression')
                 reg = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #independent variable is assumed to be in the first column
@@ -104,8 +106,65 @@ def dimensionalityReduction(dataset):
     except Exception, e: print 'Error: %s' % e
 
 #    dataset.dataTransformed = dec.dataTransformed
-
     
     return dataset
-
  
+def regression(dataset):
+    sp = raw_input('Is the underlying model presumed to be sparse? (Default is no)\n 1.Yes\n 2.No\n')
+    if sp=='1':
+        spVal = True
+    else:
+        spVal = False
+    s=raw_input('Select regression technique:\n 1. OLS\n 2. Lasso\n 3. Ridge\n 4. Elastic Net\n 5. Lars\n 6. OMP\n 0. Guide me')
+
+    if s=='1' or s=='': # default
+        reg=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=sp) #independent variable is assumed to be in the first column
+
+    elif s=='2':
+        s1=raw_input('Value of alpha parameter? (default: 1)\n')
+        try: alpha=int(s1)
+        except: alpha=1
+
+        reg=lasso.LASSO(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
+
+   elif s=='3':
+        s1=raw_input('Value of alpha parameter? (default: 1)\n')
+        try: alpha=int(s1)
+        except: alpha=1
+
+        reg=ridge.RIDGE(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
+
+   elif s=='4':
+        s1=raw_input('Value of alpha parameter? (default: 1)\n')
+        try: alpha=int(s1)
+        except: alpha=1
+
+        s1=raw_input('Ratio of l1 penalty relative to l2? (default: .5)\n')
+        try: l1_ratio = int(s1)
+        except: l1_ratio=.5
+
+        reg=elasticnet.ELASTICNET(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
+
+   elif s=='5':
+        s1=raw_input('Value of alpha parameter? (default: 1)\n')
+        try: alpha=int(s1)
+        except: alpha=1
+
+        s1=raw_input('Ratio of l1 penalty relative to l2? (default: .5)\n')
+        try: l1_ratio = int(s1)
+        except: l1_ratio=.5
+
+        reg=lars.LARS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
+
+   elif s=='6':
+
+        reg=omp.OMP(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
+
+    try: reg.fit_model()
+    except Exception, e: print 'Error fitting model: %s' % e
+    #try: dec.print_results()
+    #except Exception, e: print 'Error: %s' % e
+
+#    dataset.dataTransformed = dec.dataTransformed
+
+    return dataset
