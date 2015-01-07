@@ -14,24 +14,20 @@ import logistic
 import qda
 
 def main(dataset):
-
     while True:
-        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Dimensionality reduction\n 3. Clustering\n 4. Classification\n 0. Exit\n')
+        s=raw_input('Select data analysis task:\n  1. Regression\n  2. Dimensionality reduction\n  3. Clustering\n  4. Classification\n-  0. Exit\n')
         if s=='0' or s=='': # default
             break
         elif s=='1':
             dataset=regression(dataset)
         elif s=='2':
             dataset=dimensionalityReduction(dataset)
-
         elif s=='3':
             dataset=clusteringAnalysis(dataset)
-
         elif s=='4':
             dataset=classification(dataset)
         else:
-            print('Input not recognized')
-
+            print 'Input not recognized\n'
     return dataset
 
 
@@ -77,19 +73,19 @@ def clusteringAnalysis(dataset):
         except: n=0
 
         if n>0 & dataset.data.shape[0] < 10000:
-            print('Known number of clusters and <10k samples: Using KMeans clustering\n')
+            print 'Known number of clusters and <10k samples: Using KMeans clustering\n'
             # Use KMeans clustering
             model=clustering.KMeans(dataset.data,n_clusters=n)
         elif n>0:
-            print('Known number of clusters and >10k samples: Using MiniBatch KMeans\n')
+            print 'Known number of clusters and >10k samples: Using MiniBatch KMeans\n'
             # Use MiniBatch KMeans
             model=clustering.MiniBatchKMeans(dataset.data,n_clusters=n)
         elif dataset.data.shape[0] < 10000:
-            print('Unknown number of clusters and <10k samples: Using MeanShift')
+            print 'Unknown number of clusters and <10k samples: Using MeanShift\n'
             # Use MeanShift
             model=clustering.MeanShift(dataset.data)
         else:
-            print('Too many samples to analyze without knowing number of categories\n')
+            print 'Too many samples to analyze without knowing number of categories\n'
 
     try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
@@ -100,21 +96,21 @@ def clusteringAnalysis(dataset):
 
 
 def dimensionalityReduction(dataset):
-    s=raw_input('Select dimensionality reduction method:\n 1. Principal Component Analysis (PCA)\n-2. Randomized PCA (faster)\n 3. Sparse PCA (finds sparse principal components)\n 4. Independent Component Analysis (ICA - components need not be orthogonal)\n 5. Isometric Mapping (Isomap)\n 6. Locally Linear Embedding\n 7. Spectral Embedding\n 8. Guide me\n')
+    s=raw_input('Select dimensionality reduction method:\n  1. Principal Component Analysis (PCA)\n- 2. Randomized PCA (faster)\n  3. Sparse PCA (finds sparse principal components)\n  4. Independent Component Analysis (ICA - components need not be orthogonal)\n  5. Isometric Mapping (Isomap)\n  6. Locally Linear Embedding\n  7. Spectral Embedding\n  8. Guide me\n')
 
     if s=='1':
         s1=raw_input('Number of components to keep? (default: all)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
-        dec=pca.PCA(dataset.data,n_components=n_components)
+        model=pca.PCA(dataset.data,n_components=n_components)
 
     elif s=='2' or s=='': # default
         s1=raw_input('Number of components to keep? (default: all)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
-        dec=pca.RPCA(dataset.data,n_components=n_components)
+        model=pca.RPCA(dataset.data,n_components=n_components)
 
     elif s=='3':
         s1=raw_input('Number of sparse atoms to extract? (default: number of variables)\n')
@@ -125,14 +121,14 @@ def dimensionalityReduction(dataset):
         try: alpha=float(s1)
         except: alpha=1
 
-        dec=pca.SPCA(dataset.data,n_components=n_components, alpha=alpha)
+        model=pca.SPCA(dataset.data,n_components=n_components, alpha=alpha)
 
     elif s=='4':
         s1=raw_input('Number of components to use? (default: number of variables)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
-        dec=pca.ICA(dataset.data,n_components=n_components)
+        model=pca.ICA(dataset.data,n_components=n_components)
 
     elif s=='5':
         s1=raw_input('Number of components to use? (default: 2)\n')
@@ -143,7 +139,7 @@ def dimensionalityReduction(dataset):
         try: n_neighbors=int(s1)
         except: n_neighbors=5
 
-        dec=pca.Isomap(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+        model=pca.Isomap(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
 
     elif s=='6':
         s1=raw_input('Number of components to use? (default: 2)\n')
@@ -154,7 +150,7 @@ def dimensionalityReduction(dataset):
         try: n_neighbors=int(s1)
         except: n_neighbors=5
 
-        dec=pca.LocallyLinearEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+        model=pca.LocallyLinearEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
     elif s=='7':
         s1=raw_input('Number of components to use? (default: 2)\n')
         try: n_components=int(s1)
@@ -164,7 +160,7 @@ def dimensionalityReduction(dataset):
         try: n_neighbors=int(s1)
         except: n_neighbors=5
 
-        dec=pca.SpectralEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+        model=pca.SpectralEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
 
     elif s=='8':
         s1=raw_input('Do you want to extract components that are orthogonal to each other?\n 0. No\n-1. Yes\n')
@@ -173,19 +169,19 @@ def dimensionalityReduction(dataset):
         except: n_components=dataset.data.shape[1]
 
         if s1=='0':
-            print('Trying ICA')
-            dec=pca.ICA(dataset.data,n_components=n_components)
+            print 'Trying ICA'
+            model=pca.ICA(dataset.data,n_components=n_components)
         else:
-            print('Trying Randomized PCA')
-            dec=pca.RPCA(dataset.data,n_components=n_components)
+            print 'Trying Randomized PCA'
+            model=pca.RPCA(dataset.data,n_components=n_components)
 
 
-    try: dec.fit_model()
+    try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
-    try: dec.print_results()
+    try: model.print_results()
     except Exception, e: print 'Error: %s' % e
 
-#    dataset.dataTransformed = dec.dataTransformed
+#    dataset.dataTransformed = model.dataTransformed
     
     return dataset
  

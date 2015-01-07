@@ -21,7 +21,7 @@ class mcCheck:
 
     def check(self):
         self.conNum = np.linalg.cond(self.independentVar)
-        if self.dependentVar != 0:
+        if any(self.dependentVar != 0):
             self.nVars = self.independentVar.shape[1]
             self.vif = np.empty(self.nVars)
             for i in range(self.nVars-1):
