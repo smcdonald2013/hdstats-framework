@@ -37,22 +37,7 @@ def main(dataset):
             dataset=dimensionalityReduction(dataset)
 
         elif s=='3':
-            s=raw_input('Number of categories? Enter zero if unknown\n')
-            try: n=int(s)
-            except: n=0
-            
-            if n>0 & dataset.data.shape[0] < 10000:
-                print('Known number of categories and <10k samples: Using KMeans clustering\n')
-                # Use KMeans clustering
-                # Followed by Spectral Clustering or GMM in event of failure
-            elif n>0:
-                print('Known number of categories and >10k samples: Using MiniBatch KMeans\n')
-                # Use MiniBatch KMeans
-            elif dataset.data.shape[0] < 10000:
-                print('Unknown number of categories and <10k samples: Using MeanShift')
-                # Use MeanShift or VBGMM
-            else:
-                print('Too many samples to analyze without knowing number of categories\n')
+            dataset=clusteringAnalysis(dataset)
 
         elif s=='4':
             if dataset.data.shape[0] < 100000:
@@ -69,6 +54,26 @@ def main(dataset):
 
     return dataset
 
+
+def clusteringAnalysis(dataset):
+    s=raw_input('Number of categories? Enter zero if unknown\n')
+    try: n=int(s)
+    except: n=0
+
+    if n>0 & dataset.data.shape[0] < 10000:
+        print('Known number of categories and <10k samples: Using KMeans clustering\n')
+        # Use KMeans clustering
+        # Followed by Spectral Clustering or GMM in event of failure
+    elif n>0:
+        print('Known number of categories and >10k samples: Using MiniBatch KMeans\n')
+        # Use MiniBatch KMeans
+    elif dataset.data.shape[0] < 10000:
+        print('Unknown number of categories and <10k samples: Using MeanShift')
+        # Use MeanShift or VBGMM
+    else:
+        print('Too many samples to analyze without knowing number of categories\n')
+
+    return dataset
 
 
 def dimensionalityReduction(dataset):
