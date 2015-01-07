@@ -12,24 +12,20 @@ import omp
 import clustering
 
 def main(dataset):
-
     while True:
-        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Dimensionality reduction\n 3. Clustering\n 4. Classification\n 0. Exit\n')
+        s=raw_input('Select data analysis task:\n  1. Regression\n  2. Dimensionality reduction\n  3. Clustering\n  4. Classification\n-  0. Exit\n')
         if s=='0' or s=='': # default
             break
         elif s=='1':
             dataset=regression(dataset)
         elif s=='2':
             dataset=dimensionalityReduction(dataset)
-
         elif s=='3':
             dataset=clusteringAnalysis(dataset)
-
         elif s=='4':
             dataset=classification(dataset)
         else:
             print('Input not recognized')
-
     return dataset
 
 
