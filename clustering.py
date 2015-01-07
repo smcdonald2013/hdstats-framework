@@ -1,8 +1,8 @@
 from sklearn import cluster
 
-class KMeans:
-    # Class to interface with KMeans Clustering object from scikit-learn cluster module
 
+# Class to interface with KMeans Clustering object from scikit-learn cluster module
+class KMeans:
     def __init__(self, data, n_clusters=8, init='k-means++', n_init=10, max_iter=300, tol=0.0001, precompute_distances=True, verbose=0, random_state=None, copy_x=True, n_jobs=1):
         self.n_clusters=n_clusters
         self.init=init
@@ -18,7 +18,7 @@ class KMeans:
         self.data = data
         self.result = None
         self.dataTransformed = None
-        self.obj = cluster.KMeans(n_clusters=8, init='k-means++', n_init=10, max_iter=300, tol=0.0001, precompute_distances=True, verbose=1, random_state=None, copy_x=True, n_jobs=1)
+        self.obj = cluster.KMeans(n_clusters=self.n_clusters, init=self.init, n_init=self.n_init, max_iter=self.max_iter, tol=self.tol, precompute_distances=self.precompute_distances, verbose=self.verbose, random_state=self.random_state, copy_x=self.copy_x, n_jobs=self.n_jobs)
 
     def fit_model(self):
         self.dataTransformed = self.obj.fit_transform(self.data) # Transformed to cluster-distance space
