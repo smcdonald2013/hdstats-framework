@@ -10,11 +10,11 @@ import numpy as np
 class OLS:
     #Implements ordinary least squares regression, with assumption checks
 
-    def __init__(self, indepVar, depVar):
+    def __init__(self, indepVar, depVar, sparse=False):
         self.dependentVar = depVar
         self.independentVar = indepVar
         self.regObj = linear_model.LinearRegression()
-        self.sparse = True
+        self.sparse = sparse
 
     def fit_model(self):
         self.fitted_model = self.regObj.fit(self.independentVar, self.dependentVar)
