@@ -16,13 +16,11 @@ class KMeans:
         self.n_jobs=n_jobs
 
         self.data = data
-        self.result = None
         self.dataTransformed = None
         self.obj = cluster.MiniBatchKMeans(n_clusters=self.n_clusters, init=self.init, n_init=self.n_init, max_iter=self.max_iter, tol=self.tol, precompute_distances=self.precompute_distances, verbose=self.verbose, random_state=self.random_state, copy_x=self.copy_x, n_jobs=self.n_jobs)
 
     def fit_model(self):
-        self.dataTransformed = self.obj.fit_transform(self.data) # Transformed to cluster-distance space
-        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+        self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
         print('\n Cluster Centers')
@@ -51,13 +49,11 @@ class MiniBatchKMeans:
         self.reassignment_ratio=reassignment_ratio
 
         self.data = data
-        self.result = None
         self.dataTransformed = None
         self.obj = cluster.KMeans(n_clusters=self.n_clusters, init=self.init, max_iter=self.max_iter, batch_size=self.batch_size, verbose=self.verbose, compute_labels=self.compute_labels, random_state=self.random_state, tol=self.tol, max_no_improvement=self.max_no_improvement, init_size=self.init_size, n_init=self.n_init, reassignment_ratio=self.reassignment_ratio)
 
     def fit_model(self):
-        self.dataTransformed = self.obj.fit_transform(self.data) # Transformed to cluster-distance space
-        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+        self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
         print('\n Cluster Centers')
@@ -79,12 +75,11 @@ class MeanShift:
         self.cluster_all=cluster_all
 
         self.data = data
-        self.result = None
         self.dataTransformed = None
         self.obj = cluster.MeanShift(bandwidth=self.bandwidth, seeds=self.seeds, bin_seeding=self.bin_seeding, min_bin_freq=self.min_bin_freq, cluster_all=self.cluster_all)
 
     def fit_model(self):
-        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+        self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
         print('\n Cluster Centers')
@@ -113,18 +108,17 @@ class SpectralClustering:
         self.kernel_params=kernel_params
 
         self.data = data
-        self.result = None
         self.dataTransformed = None
         self.obj = cluster.SpectralClustering(n_clusters=self.n_clusters, eigen_solver=self.eigen_solver, random_state=self.random_state, n_init=self.n_init, gamma=self.gamma, affinity=self.affinity, n_neighbors=self.n_neighbors, eigen_tol=self.eigen_tol, assign_labels=self.assign_labels, degree=self.degree, coef0=self.coef0, kernel_params=self.kernel_params)
 
     def fit_model(self):
-        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+        self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
         pass
 
     def plot_results(self):
-        # plot cluster centers along with all data, colored by nearest cluster
+        # plot data, colored by nearest cluster
         pass
 
 
@@ -140,17 +134,16 @@ class DBSCAN:
         self.random_state=random_state
 
         self.data = data
-        self.result = None
         self.dataTransformed = None
         self.obj = cluster.DBSCAN(eps=self.eps, min_samples=self.min_samples, metric=self.metric, algorithm=self.algorithm, leaf_size=self.leaf_size, p=self.p, random_state=self.random_state)
 
     def fit_model(self):
-        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+        self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
 
     def print_results(self):
         pass
 
     def plot_results(self):
-        # plot cluster centers along with all data, colored by nearest cluster
+        # plot data, colored by nearest cluster
         pass
 
