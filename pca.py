@@ -26,6 +26,7 @@ class PCA:
     def plot_results(self):
         # plot first two prinicpal components against each other 
         # plot all components by sample number or against independent variable
+        pass
 
 
 class RPCA:
@@ -55,6 +56,7 @@ class RPCA:
     def plot_results(self):
         # plot first two prinicpal components against each other
         # plot all components by sample number or against independent variable
+        pass
 
 class SPCA:
     # Sparse Principal Component Analysis
@@ -88,6 +90,7 @@ class SPCA:
 
     def plot_results(self):
         # plot all components by sample number or against independent variable
+        pass
 
 
 class ICA:
@@ -118,7 +121,7 @@ class ICA:
 
     def plot_results(self):
         # plot all components by sample number or against independent variable
-
+        pass
 
 
 
@@ -153,7 +156,7 @@ class Isomap:
     def plot_results(self):
         # plot components against each other, if n_components=2
         # plot all components by sample number or against independent variable
-
+        pass
 
 class LocallyLinearEmbedding:
     # Class to interface with Locally Linear Embedding objects from scikit-learn Manifold Learning module
@@ -186,7 +189,7 @@ class LocallyLinearEmbedding:
     def plot_results(self):
         # plot components against each other, if n_components=2
         # plot all components by sample number or against independent variable
-
+        pass
 
 class SpectralEmbedding:
     # Class to interface with Spectral Embedding objects from scikit-learn Manifold Learning module
@@ -214,3 +217,4 @@ class SpectralEmbedding:
     def plot_results(self):
         # plot components against each other, if n_components=2
         # plot all components by sample number or against independent variable
+        pass
