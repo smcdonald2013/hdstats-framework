@@ -105,14 +105,14 @@ def dimensionalityReduction(dataset):
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
-        dec=pca.PCA(dataset.data,n_components=n_components)
+        model=pca.PCA(dataset.data,n_components=n_components)
 
     elif s=='2' or s=='': # default
         s1=raw_input('Number of components to keep? (default: all)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
-        dec=pca.RPCA(dataset.data,n_components=n_components)
+        model=pca.RPCA(dataset.data,n_components=n_components)
 
     elif s=='3':
         s1=raw_input('Number of sparse atoms to extract? (default: number of variables)\n')
@@ -123,14 +123,14 @@ def dimensionalityReduction(dataset):
         try: alpha=float(s1)
         except: alpha=1
 
-        dec=pca.SPCA(dataset.data,n_components=n_components, alpha=alpha)
+        model=pca.SPCA(dataset.data,n_components=n_components, alpha=alpha)
 
     elif s=='4':
         s1=raw_input('Number of components to use? (default: number of variables)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
-        dec=pca.ICA(dataset.data,n_components=n_components)
+        model=pca.ICA(dataset.data,n_components=n_components)
 
     elif s=='5':
         s1=raw_input('Number of components to use? (default: 2)\n')
@@ -141,7 +141,7 @@ def dimensionalityReduction(dataset):
         try: n_neighbors=int(s1)
         except: n_neighbors=5
 
-        dec=pca.Isomap(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+        model=pca.Isomap(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
 
     elif s=='6':
         s1=raw_input('Number of components to use? (default: 2)\n')
@@ -152,7 +152,7 @@ def dimensionalityReduction(dataset):
         try: n_neighbors=int(s1)
         except: n_neighbors=5
 
-        dec=pca.LocallyLinearEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+        model=pca.LocallyLinearEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
     elif s=='7':
         s1=raw_input('Number of components to use? (default: 2)\n')
         try: n_components=int(s1)
@@ -162,7 +162,7 @@ def dimensionalityReduction(dataset):
         try: n_neighbors=int(s1)
         except: n_neighbors=5
 
-        dec=pca.SpectralEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+        model=pca.SpectralEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
 
     elif s=='8':
         s1=raw_input('Do you want to extract components that are orthogonal to each other?\n 0. No\n-1. Yes\n')
@@ -172,18 +172,18 @@ def dimensionalityReduction(dataset):
 
         if s1=='0':
             print('Trying ICA')
-            dec=pca.ICA(dataset.data,n_components=n_components)
+            model=pca.ICA(dataset.data,n_components=n_components)
         else:
             print('Trying Randomized PCA')
-            dec=pca.RPCA(dataset.data,n_components=n_components)
+            model=pca.RPCA(dataset.data,n_components=n_components)
 
 
-    try: dec.fit_model()
+    try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
-    try: dec.print_results()
+    try: model.print_results()
     except Exception, e: print 'Error: %s' % e
 
-#    dataset.dataTransformed = dec.dataTransformed
+#    dataset.dataTransformed = model.dataTransformed
     
     return dataset
  
