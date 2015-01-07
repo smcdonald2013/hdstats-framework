@@ -23,6 +23,11 @@ class PCA:
         print(self.obj.explained_variance_ratio_)
         print('\n')
 
+    def plot_results(self):
+        # plot first two prinicpal components against each other 
+        # plot all components by sample number or against independent variable
+
+
 class RPCA:
     # Randomized Principal Component Analysis
 
@@ -47,6 +52,9 @@ class RPCA:
         print(self.obj.explained_variance_ratio_)
         print('\n')
 
+    def plot_results(self):
+        # plot first two prinicpal components against each other
+        # plot all components by sample number or against independent variable
 
 class SPCA:
     # Sparse Principal Component Analysis
@@ -78,6 +86,10 @@ class SPCA:
         print(np.sum(np.power(self.obj.error_,2)))
         print('\n')
 
+    def plot_results(self):
+        # plot all components by sample number or against independent variable
+
+
 class ICA:
     # Independent Component Analysis
 
@@ -103,6 +115,9 @@ class ICA:
         print('\n Mixing matrix')
         print(self.obj.mixing_)
         print('\n')
+
+    def plot_results(self):
+        # plot all components by sample number or against independent variable
 
 
 
@@ -135,6 +150,10 @@ class Isomap:
         print(self.obj.reconstruction_error())
         print('\n')
 
+    def plot_results(self):
+        # plot components against each other, if n_components=2
+        # plot all components by sample number or against independent variable
+
 
 class LocallyLinearEmbedding:
     # Class to interface with Locally Linear Embedding objects from scikit-learn Manifold Learning module
@@ -164,6 +183,10 @@ class LocallyLinearEmbedding:
         print(self.obj.reconstruction_error_)
         print('\n')
 
+    def plot_results(self):
+        # plot components against each other, if n_components=2
+        # plot all components by sample number or against independent variable
+
 
 class SpectralEmbedding:
     # Class to interface with Spectral Embedding objects from scikit-learn Manifold Learning module
@@ -188,4 +211,6 @@ class SpectralEmbedding:
         print(self.obj.affinity_matrix_)
         print('\n')
 
-
+    def plot_results(self):
+        # plot components against each other, if n_components=2
+        # plot all components by sample number or against independent variable
