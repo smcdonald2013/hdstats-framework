@@ -27,8 +27,9 @@ def stdclean(dataset):
 
     # Remove outliers, column-wise
     for i in range(dataset.data.shape[1]):
-        test = (dataset.data[:,i] > (dataset.data[:,i].mean() + n*dataset.data[:,i].std())) | (dataset.data[:,i] < (dataset.data[:,i].mean() - n*dataset.data[:,i].std()))
-        dataset.data[test,i] = np.nan
+        if i!=dataset.independentVariable:
+            test = (dataset.data[:,i] > (dataset.data[:,i].mean() + n*dataset.data[:,i].std())) | (dataset.data[:,i] < (dataset.data[:,i].mean() - n*dataset.data[:,i].std()))
+            dataset.data[test,i] = np.nan
     return dataset
     
 
@@ -39,8 +40,9 @@ def pctclean(dataset):
 
     # Remove outliers, column-wise
     for i in range(dataset.data.shape[1]):
-        test = (dataset.data[:,i] > np.percentile(dataset.data[:,i], 100-n)) | (dataset.data[:,i] < np.percentile(dataset.data[:,i], n))
-        dataset.data[test,i] = np.nan
+        if i!=dataset.independentVariable:
+            test = (dataset.data[:,i] > np.percentile(dataset.data[:,i], 100-n)) | (dataset.data[:,i] < np.percentile(dataset.data[:,i], n))
+            dataset.data[test,i] = np.nan
     return dataset
 
 def removeNaNs(dataset):
@@ -65,13 +67,14 @@ def removeNaNs(dataset):
 def demean(dataset):
     #Subtract mean, column-wise
     for i in range(dataset.data.shape[1]):
-        dataset.data[:,i] -= nanmean(dataset.data[:,i])
+        if i!=dataset.independentVariable:
+            dataset.data[:,i] -= nanmean(dataset.data[:,i])
     return dataset
 
 def devar(dataset):
     # Normalize variance by dividing each column by its standard deviation
     for i in range(dataset.data.shape[1]):
-        if np.std(dataset.data[:,i]) > 0:
+        if (np.std(dataset.data[:,i]) > 0) & (i!=dataset.independentVariable):
             dataset.data[:,i] /= np.std(dataset.data[:,i])
     return dataset
 
