@@ -41,12 +41,14 @@ while True:
             s=raw_input('In: ')
             if s=='':
                 pass
-            elif ('=' in s) or ('import' in s):
+            elif (('=' in s) and not (('==' in s) or ('!=' in s) or ('>=' in s) or ('<=' in s))) or ('import' in s):
+                # Catch some common commands that can only be handled by exec()
                 try:
                     exec(s)
                 except Exception, e:
                     print 'Error: %s' % e
             else:
+                # Other statements can be evaluated, so we can print the results to screen
                 try:
                     print(eval(s))
                 except Exception, e:
