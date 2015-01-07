@@ -9,6 +9,7 @@ import elasticnet
 import ridge
 import lars
 import omp
+import clustering
 
 def main(dataset):
 
@@ -33,22 +34,65 @@ def main(dataset):
 
 
 def clusteringAnalysis(dataset):
-    s=raw_input('Number of categories? Enter zero if unknown\n')
-    try: n=int(s)
-    except: n=0
+    s=raw_input('Select clustering method:\n- 1. KMeans Clustering \n  2. MiniBatch KMeans Clustering\n  3. MeanShift\n  4. Spectral Clustering\n  5. DBSCAN (Density-Based Spatial Clustering of Applications with Noise)\n  6. Guide me\n')
 
-    if n>0 & dataset.data.shape[0] < 10000:
-        print('Known number of categories and <10k samples: Using KMeans clustering\n')
-        # Use KMeans clustering
-        # Followed by Spectral Clustering or GMM in event of failure
-    elif n>0:
-        print('Known number of categories and >10k samples: Using MiniBatch KMeans\n')
-        # Use MiniBatch KMeans
-    elif dataset.data.shape[0] < 10000:
-        print('Unknown number of categories and <10k samples: Using MeanShift')
-        # Use MeanShift or VBGMM
-    else:
-        print('Too many samples to analyze without knowing number of categories\n')
+    if s=='1' or s=='': # default
+        # KMeans Clustering
+        s1=raw_input('Number of clusters to find? (default: 8)\n')
+        try: n=int(s1)
+        except: n=8
+        model=clustering.KMeans(dataset.data,n_clusters=n)
+
+    elif s=='2':
+        # MiniBatchKMeans Clustering
+        s1=raw_input('Number of clusters to find? (default: 8)\n')
+        try: n=int(s1)
+        except: n=8
+        model=clustering.MiniBatchKMeans(dataset.data,n_clusters=n)
+
+    elif s=='3':
+        # MeanShift Clustering
+        model=clustering.MeanShift(dataset.data)
+
+    elif s=='4':
+        # Spectral Clustering
+        s1=raw_input('Number of clusters to find? (default: 8)\n')
+        try: n=int(s1)
+        except: n=8
+        model=clustering.SpectralClustering(dataset.data,n_clusters=n)
+
+    elif s=='5':
+        # DBSCAN
+        s1=raw_input('Neighborhood size? (default: 0.5)\n')
+        try: n=float(s1)
+        except: n=0.5
+        model=clustering.DBSCAN(dataset.data, eps=n)
+
+    elif s=='6':
+       # Guided Clustering
+       s=raw_input('Number of clusters, if known?\n')
+        try: n=int(s)
+        except: n=0
+
+        if n>0 & dataset.data.shape[0] < 10000:
+            print('Known number of clusters and <10k samples: Using KMeans clustering\n')
+            # Use KMeans clustering
+            model=clustering.KMeans(dataset.data,n_clusters=n)
+        elif n>0:
+            print('Known number of clusters and >10k samples: Using MiniBatch KMeans\n')
+            # Use MiniBatch KMeans
+            model=clustering.MiniBatchKMeans(dataset.data,n_clusters=n)
+        elif dataset.data.shape[0] < 10000:
+            print('Unknown number of clusters and <10k samples: Using MeanShift')
+            # Use MeanShift
+            model=clustering.MeanShift(dataset.data)
+        else:
+            print('Too many samples to analyze without knowing number of categories\n')
+
+    try: model.fit_model()
+    except Exception, e: print 'Error fitting model: %s' % e
+    try: model.print_results()
+    except Exception, e: print 'Error: %s' % e
 
     return dataset
 
