@@ -28,15 +28,21 @@ def main(dataset):
             # Assign independent Variable
             n=None
             s=raw_input('Enter column number of independent variable (zero-indexed)\n')
-            try: n=int(s)
-            except: print 'Input not an integer. Variable not set'
+            try: 
+                n=int(s)
+            except: 
+                print 'Input not an interger. Set to NaN'
+                n=np.NaN
             dataset.independentVariable=n
         elif s=='4':
             # Assign dependent Variable
             n=None
             s=raw_input('Enter column number of independent variable (zero-indexed)\n')
-            try: n=int(s)
-            except: print 'Input not an integer. Variable not set'
+            try:
+                n=int(s)
+            except: 
+                print 'Input not an interger. Set to NaN'
+                n=np.NaN
             dataset.dependentVariable=n
 
     return dataset

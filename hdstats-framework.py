@@ -2,9 +2,10 @@ import dataImport
 import dataCleaning
 import dataAnalysis
 import dataVisualization
+import numpy as np
 
 class Dataset(object):
-    def __init__(self, data=None, error=None, variableNameToNumber=None, variableNumberToName=None, independentVariable=None, dependentVariable=None):
+    def __init__(self, data=None, error=None, variableNameToNumber=None, variableNumberToName=None, independentVariable=np.NaN, dependentVariable=np.NaN):
         self.data=data   # Numpy array containing full dataset
         # Optional:
         self.error=error # Numpy array containing errors for each data point
