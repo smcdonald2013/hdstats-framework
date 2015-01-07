@@ -285,6 +285,8 @@ def classification(dataset):
     except Exception, e: print 'Error fitting model: %s' % e
     try: classifier.print_results()
     except Exception, e: print 'Error: %s' % e
+    try: classifier.plot_results()
+    except Exception, e: print 'Error: %s' % e
 #    dataset.dataTransformed = dec.dataTransformed
 
     return dataset
