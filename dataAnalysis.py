@@ -10,6 +10,8 @@ import ridge
 import lars
 import omp
 import clustering
+import logistic
+import qda
 
 def main(dataset):
 
