@@ -57,6 +57,7 @@ class RPCA:
 
     def plot_results(self):
         # plot first two prinicpal components against each other
+        viz.crossplot_components(self.dataTransformed[:,0],self.dataTransformed[:,1]).plot()
         # plot all components by sample number or against independent variable
         pass
 
@@ -91,6 +92,9 @@ class SPCA:
         print '\n'
 
     def plot_results(self):
+        # plot components against each other, if n_components=2
+        if self.n_components==2:
+            viz.crossplot_components(self.dataTransformed[:,0],self.dataTransformed[:,1]).plot()
         # plot all components by sample number or against independent variable
         pass
 
@@ -122,6 +126,9 @@ class ICA:
         print '\n'
 
     def plot_results(self):
+        # plot components against each other, if n_components=2
+        if self.n_components==2:
+            viz.crossplot_components(self.dataTransformed[:,0],self.dataTransformed[:,1]).plot()
         # plot all components by sample number or against independent variable
         pass
 
@@ -157,6 +164,8 @@ class Isomap:
 
     def plot_results(self):
         # plot components against each other, if n_components=2
+        if self.n_components==2:
+            viz.crossplot_components(self.dataTransformed[:,0],self.dataTransformed[:,1]).plot()
         # plot all components by sample number or against independent variable
         pass
 
@@ -190,6 +199,8 @@ class LocallyLinearEmbedding:
 
     def plot_results(self):
         # plot components against each other, if n_components=2
+        if self.n_components==2:
+            viz.crossplot_components(self.dataTransformed[:,0],self.dataTransformed[:,1]).plot()
         # plot all components by sample number or against independent variable
         pass
 
@@ -218,5 +229,7 @@ class SpectralEmbedding:
 
     def plot_results(self):
         # plot components against each other, if n_components=2
+        if self.n_components==2:
+            viz.crossplot_components(self.dataTransformed[:,0],self.dataTransformed[:,1]).plot()
         # plot all components by sample number or against independent variable
         pass

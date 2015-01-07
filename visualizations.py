@@ -51,9 +51,8 @@ class crossplot_components:
 
     def plot(self):
         ax = plt.gca()
-        ax.set_color_cycle(['b','r','g','c','k','y','m'])
-
         ax.scatter(self.c1, self.c2)
+
         plt.xlabel('Component 1')
         plt.ylabel('Component 2')
         plt.title('Cross-plot of two highest-weighted components')
