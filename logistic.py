@@ -30,6 +30,10 @@ class LOGISTIC:
         self.mvnAction()
         self.eqCovAction()
 
+    def print_results(self):
+        print('\n Logistic Coefficients')
+        print(self.classObj.coef_)
+
     def acAction(self):
         if self.acCheck.ljungbox[1][0] < .05:
             print "Residuals are autocorrelated. Implementing GLSAR."

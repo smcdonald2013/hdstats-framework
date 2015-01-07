@@ -122,7 +122,7 @@ class eqCovCheck:
         self.classes = classes
 
     def check(self):
-        importr('boxM')
+        importr('biotools')
         pan_data = pandas.DataFrame(self.data)
         pan_classes = pandas.DataFrame(self.classes)
         r_data = com.convert_to_r_dataframe(pan_data)

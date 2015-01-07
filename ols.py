@@ -6,6 +6,7 @@ import lasso as lasso
 import elasticnet as elasticnet
 import ridge as ridge
 import numpy as np
+import visualizations as viz
 
 class OLS:
     #Implements ordinary least squares regression, with assumption checks
@@ -36,13 +37,22 @@ class OLS:
         self.highdimCheck = c.highdimCheck(self.independentVar)
         self.highdimCheck.check()
 
-    def OLS(self):
+    def actions(self):
         self.acAction()
         self.mcAction()
         self.linAction()
         self.highdimAction()
         self.singAction()
         self.homoskeAction()
+
+    def print_results(self):
+        print('\n OLS Coefficients')
+        print(self.regObj.coef_)
+        print('\n R-Squared')
+        print(self.regObj.score(self.independentVar, self.dependentVar))
+
+    def plot_results(self):
+        viz.plot_residuals(self.residuals,self.regObj.predict(self.independentVar)).plot()
 
     def mcAction(self):
         if self.mcCheck.conNum > 20:

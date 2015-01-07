@@ -22,6 +22,12 @@ class QDA:
 
     def Actions(self):
         self.mvnAction()
+
+    def print_results(self):
+        print('\n QDA Coefficients')
+        print(self.classObj.coef_)
+        print('\n Class Means')
+        print(self.classObj.means_)
     
     def acAction(self):
         if self.acCheck.ljungbox[1][0] < .05:

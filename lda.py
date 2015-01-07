@@ -2,6 +2,7 @@ from sklearn.lda import LDA as skLDA
 import statsmodels.api as sm
 import checks as c
 import numpy as np
+import logistic
 
 class LDA:
     #Implements ordinary linear discriminant analysis classification, with assumption checks
@@ -25,6 +26,12 @@ class LDA:
     def Actions(self):
         self.mvnAction()
         #self.eqCovAction()
+
+    def print_results(self):
+        print('\n LDA Coefficients')
+        print(self.classObj.coef_)
+        print('\n Class Means')
+        print(self.classObj.means_)
 
     def mvnAction(self):
         if self.mvnCheck.skewp < .05:
