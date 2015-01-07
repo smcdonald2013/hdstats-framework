@@ -53,6 +53,7 @@ class OLS:
 
     def plot_results(self):
         viz.plot_residuals(self.residuals,self.regObj.predict(self.independentVar)).plot()
+        viz.plot_qq(self.residuals).plot()
 
     def mcAction(self):
         if self.mcCheck.conNum > 20:
@@ -68,7 +69,6 @@ class OLS:
             print "Multicollinearity is not an issue, but the data is high dimensional. Fitting lasso and orthogonal matching pursuit regression. "
             return lasso.LASSO(self.independentVar, self.dependentVar)
             #self.newObj2 = omp.OMP(self.independenVar, self.dependentVar)
-            #Also, PCA regression?
         else:
             print "Multicollinearity is not an issue."
 
@@ -97,8 +97,7 @@ class OLS:
 
     def singAction(self):
         if self.singCheck == True:
-            print "Singular matrix"
-            #Remove linearly dependent rows
+            print ("Singular data matrix. Inspect data and remove linearly dependent samples.")
 
     def homoskeAction(self):
         if self.homoskeCheck.bptest[1] < .05:

@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
 
 class plot_residuals:
     #Plots the residuals
@@ -30,4 +31,13 @@ class plot_regPath:
         plt.ylabel('weights')
         plt.title('Coefficients as a function of the regularization paramter')
         plt.axis('tight')
+        plt.show()
+
+class plot_qq:
+    #Plots the vector given against the quantiles of a theoretical normal distribution. Normally, this should receive the residuals of a regregression as input. 
+    def __init__(self, data):
+        self.data = data
+
+    def plot(self):
+        sm.qqplot(self.data, fit=True, line='s')
         plt.show()
