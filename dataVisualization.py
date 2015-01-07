@@ -7,7 +7,6 @@ def main(dataset):
         if s=='0' or s=='': # default
             break
         elif s=='1':
-            np.set_printoptions(precision=3, suppress=True)
             print(dataset.data)
             print '\n'
 

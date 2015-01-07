@@ -4,6 +4,10 @@ import dataAnalysis
 import dataVisualization
 import numpy as np
 
+# Set printing options for numpy arrays
+np.set_printoptions(precision=3, suppress=True)
+
+# Basic class to hold all datasets
 class Dataset(object):
     def __init__(self, data=None, error=None, variableNameToNumber=None, variableNumberToName=None, independentVariable=np.NaN, dependentVariable=np.NaN):
         self.data=data   # Numpy array containing full dataset
