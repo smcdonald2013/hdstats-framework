@@ -34,3 +34,38 @@ class KMeans:
         pass
 
 
+# Class to interface with MiniBatch KMeans Clustering object from scikit-learn cluster module
+class MiniBatchKMeans:
+    def __init__(self, data, n_clusters=8, init='k-means++', max_iter=100, batch_size=100, verbose=0, compute_labels=True, random_state=None, tol=0.0, max_no_improvement=10, init_size=None, n_init=3, reassignment_ratio=0.01):
+        self.n_clusters=n_clusters
+        self.init=init
+        self.max_iter=max_iter
+        self.batch_size=batch_size
+        self.verbose=verbose
+        self.compute_labels=compute_labels
+        self.random_state=random_state
+        self.tol=tol
+        self.max_no_improvement=max_no_improvement
+        self.init_size=init_size
+        self.n_init=n_init
+        self.reassignment_ratio=reassignment_ratio
+
+        self.data = data
+        self.result = None
+        self.dataTransformed = None
+        self.obj = cluster.KMeans(n_clusters=self.n_clusters, init=self.init, max_iter=self.max_iter, batch_size=self.batch_size, verbose=self.verbose, compute_labels=self.compute_labels, random_state=self.random_state, tol=self.tol, max_no_improvement=self.max_no_improvement, init_size=self.init_size, n_init=self.n_init, reassignment_ratio=self.reassignment_ratio)
+
+    def fit_model(self):
+        self.dataTransformed = self.obj.fit_transform(self.data) # Transformed to cluster-distance space
+        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+
+    def print_results(self):
+        print('\n Cluster Centers')
+        print(self.obj.cluster_centers_)
+        print('\n')
+
+    def plot_results(self):
+        # plot cluster centers along with all data, colored by nearest cluster
+        pass
+
+
