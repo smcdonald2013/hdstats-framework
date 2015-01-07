@@ -3,6 +3,7 @@ import statsmodels.api as sm
 import checks as c
 import numpy as np
 import logistic
+import visualizations as viz
 
 class LDA:
     #Implements ordinary linear discriminant analysis classification, with assumption checks
@@ -32,6 +33,10 @@ class LDA:
         print(self.classObj.coef_)
         print('\n Class Means')
         print(self.classObj.means_)
+
+    def plot_results(self):
+        self.transData = self.fitted_model.transform(self.data)
+        viz.plot_comps(self.transData[:,0],self.transData[:,1], compNums=[1,2],classes=self.classes, classNames=['setosa','versicolor','virginica']).plot()
 
     def mvnAction(self):
         if self.mvnCheck.skewp < .05:
