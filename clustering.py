@@ -18,7 +18,7 @@ class KMeans:
         self.data = data
         self.result = None
         self.dataTransformed = None
-        self.obj = cluster.KMeans(n_clusters=self.n_clusters, init=self.init, n_init=self.n_init, max_iter=self.max_iter, tol=self.tol, precompute_distances=self.precompute_distances, verbose=self.verbose, random_state=self.random_state, copy_x=self.copy_x, n_jobs=self.n_jobs)
+        self.obj = cluster.MiniBatchKMeans(n_clusters=self.n_clusters, init=self.init, n_init=self.n_init, max_iter=self.max_iter, tol=self.tol, precompute_distances=self.precompute_distances, verbose=self.verbose, random_state=self.random_state, copy_x=self.copy_x, n_jobs=self.n_jobs)
 
     def fit_model(self):
         self.dataTransformed = self.obj.fit_transform(self.data) # Transformed to cluster-distance space
