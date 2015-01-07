@@ -8,7 +8,7 @@ import pca
 def main(dataset):
 
     while True:
-        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering\n 4. Classification\n-0. Exit\n')
+        s=raw_input('Select data analysis task:\n 1. Regression\n 2. Diminsionality reduction\n 3. Clustering\n 4. Classification\n 0. Exit\n')
         if s=='0' or s=='': # default
             break
         elif s=='1':
@@ -72,7 +72,7 @@ def main(dataset):
 
 
 def dimensionalityReduction(dataset):
-    s=raw_input('Select dimensionality reduction method:\n-1. Randomized PCA\n 2. Standard PCA\n 3. Sparse PCA\n 4. ICA\n')
+    s=raw_input('Select dimensionality reduction method:\n 1. Randomized PCA\n 2. Standard PCA\n 3. Sparse PCA\n 4. ICA\n')
 
     if s=='1' or s=='': # default
         s1=raw_input('Number of components to keep? (default: all)\n')
@@ -122,7 +122,7 @@ def regression(dataset):
         spVal = True
     else:
         spVal = False
-    s=raw_input('Select regression technique:\n 1. OLS\n 2. Lasso\n 3. Ridge\n 4. Elastic Net\n 5. Lars\n 6. OMP\n 0. Guide me')
+    s=raw_input('Select regression technique:\n 1. OLS\n 2. Lasso\n 3. Ridge\n 4. Elastic Net\n 5. Lars\n 6. OMP\n 0. Guide me\n')
 
     if s=='1' or s=='': # default
         reg=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=sp) #independent variable is assumed to be in the first column
@@ -134,14 +134,14 @@ def regression(dataset):
 
         reg=lasso.LASSO(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
 
-   elif s=='3':
+    elif s=='3':
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
 
         reg=ridge.RIDGE(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
 
-   elif s=='4':
+    elif s=='4':
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
@@ -152,7 +152,7 @@ def regression(dataset):
 
         reg=elasticnet.ELASTICNET(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
 
-   elif s=='5':
+    elif s=='5':
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
@@ -163,7 +163,7 @@ def regression(dataset):
 
         reg=lars.LARS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
 
-   elif s=='6':
+    elif s=='6':
 
         reg=omp.OMP(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
