@@ -68,4 +68,29 @@ class MiniBatchKMeans:
         # plot cluster centers along with all data, colored by nearest cluster
         pass
 
+# Class to interface with MeanShift clustering object from scikit-learn cluster module
+# No need to know number of clusters a priori
+class MeanShift:
+    def __init__(self, data, bandwidth=None, seeds=None, bin_seeding=False, min_bin_freq=1, cluster_all=True):
+        self.bandwidth=bandwidth
+        self.seeds=seeds
+        self.bin_seeding=bin_seeding
+        self.min_bin_freq=min_bin_freq
+        self.cluster_all=cluster_all
 
+        self.data = data
+        self.result = None
+        self.dataTransformed = None
+        self.obj = cluster.MeanShift(bandwidth=self.bandwidth, seeds=self.seeds, bin_seeding=self.bin_seeding, min_bin_freq=self.min_bin_freq, cluster_all=self.cluster_all)
+
+    def fit_model(self):
+        self.result = self.obj.fit_predict(self.data) # Index of closest cluster
+
+    def print_results(self):
+        print('\n Cluster Centers')
+        print(self.obj.cluster_centers_)
+        print('\n')
+
+    def plot_results(self):
+        # plot cluster centers along with all data, colored by nearest cluster
+        pass
