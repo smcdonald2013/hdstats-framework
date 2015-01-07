@@ -104,3 +104,87 @@ class ICA:
         print(self.obj.mixing_)
         print('\n')
 
+
+
+
+from sklearn import manifold
+
+class Isomap:
+    # Class to interface with Isomap (Isometric Mapping) Embedding objects from scikit-learn Manifold Learning module
+
+    def __init__(self, data, n_components=2, n_neighbors=5, eigen_solver='auto', tol=0, max_iter=None, path_method='auto', neighbors_algorithm='auto'):
+        self.n_components=n_components
+        self.n_neighbors=n_neighbors 
+        self.eigen_solver=eigen_solver
+        self.tol_tol
+        self.max_iter=max_iter
+        self.path_method=path_method
+        self.neighbors_algorithm=neighbors_algorithm
+
+        self.data = data
+        self.dataTransformed = None
+        self.obj = manifold.Isomap(n_neighbors=self.n_neighbors, n_components=self.n_components, eigen_solver='auto', tol=0, max_iter=None, path_method='auto', neighbors_algorithm='auto')
+
+    def fit_model(self):
+        self.dataTransformed = self.obj.fit_transform(self.data)
+
+    def print_results(self): 
+        print('\n Distribution Matrix')
+        print(self.obj.dist_matrix_)
+        print('\n Reconstruction Error')
+        print(self.obj.reconstruction_error())
+        print('\n')
+
+
+class LocallyLinearEmbedding:
+    # Class to interface with Locally Linear Embedding objects from scikit-learn Manifold Learning module
+
+    def __init__(self, data, n_components=2, n_neighbors=5, reg=0.001, eigen_solver='auto', tol=1e-06, max_iter=100, method='standard', hessian_tol=0.0001, modified_tol=1e-12, neighbors_algorithm='auto', random_state=None):
+        self.n_components=n_components
+        self.n_neighbors=n_neighbors
+        self.eigen_solver=eigen_solver
+        self.tol=tol
+        self.max_iter=max_iter
+        self.method=method
+        self.hessian_tol=hessian_tol
+        self.modified_tol=modified_tol
+        self.neighbors_algorithm=neighbors_algorithm
+        self.random_state=random_state
+
+        self.data = data
+        self.dataTransformed = None
+        self.obj = manifold.LocallyLinearEmbedding(n_neighbors=self.n_neighbors, n_components=self.n_componenets, reg=self.reg, eigen_solver=self.eigen_solver, tol=self.tol, max_iter=self.max_iter, method=self.method, hessian_tol=self.hessian_tol, modified_tol=self.modified_tol, neighbors_algorithm=self.neighbors_algorithm, random_state=self.random_state)
+
+    def fit_model(self):
+        self.dataTransformed = self.obj.fit_transform(self.data)
+
+    def print_results(self):
+        print('\n Reconstruction Error')
+        print(self.obj.reconstruction_error_)
+        print('\n')
+
+
+class SpectralEmbedding:
+    # Class to interface with Spectral Embedding objects from scikit-learn Manifold Learning module
+
+    def __init__(self, data, n_components=2, affinity='nearest_neighbors', gamma=None, random_state=None, eigen_solver=None, n_neighbors=None):
+        self.n_components=n_components
+        self.affinity=affinity
+        self.gamma=gamma
+        self.random_state=random_state
+        self.eigen_solver=eigen_solver
+        self.n_neighbors=n_neighbors
+
+        self.data = data
+        self.dataTransformed = None
+        self.obj = manifold.SpectralEmbedding(n_components=self.n_components, affinity=self.affinity, gamma=self.gamma, random_state=self.random_state, eigen_solver=self.eigen_solver, n_neighbors=self.n_neighbors)
+
+    def fit_model(self):
+        self.dataTransformed = self.obj.fit_transform(self.data)
+
+    def print_results(self):
+        print('\n Affinity Matrix')
+        print(self.obj.affinity_matrix_)
+        print('\n')
+
+

@@ -72,21 +72,21 @@ def main(dataset):
 
 
 def dimensionalityReduction(dataset):
-    s=raw_input('Select dimensionality reduction method:\n 1. Randomized PCA\n 2. Standard PCA\n 3. Sparse PCA\n 4. ICA\n')
+    s=raw_input('Select dimensionality reduction method:\n 1. Principal Component Analysis (PCA)\n-2. Randomized PCA (faster)\n 3. Sparse PCA (finds sparse principal components)\n 4. Independent Component Analysis (ICA - components need not be orthogonal)\n 5. Isometric Mapping (Isomap)\n 6. Locally Linear Embedding\n 7. Spectral Embedding\n')
 
-    if s=='1' or s=='': # default
-        s1=raw_input('Number of components to keep? (default: all)\n')
-        try: n_components=int(s1)
-        except: n_components=dataset.data.shape[1]
-
-        dec=pca.RPCA(dataset.data,n_components=n_components)
-
-    elif s=='2':
+    if s=='1':
         s1=raw_input('Number of components to keep? (default: all)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
         dec=pca.PCA(dataset.data,n_components=n_components)
+
+    elif s=='2' or s=='': # default
+        s1=raw_input('Number of components to keep? (default: all)\n')
+        try: n_components=int(s1)
+        except: n_components=dataset.data.shape[1]
+
+        dec=pca.RPCA(dataset.data,n_components=n_components)
 
     elif s=='3':
         s1=raw_input('Number of sparse atoms to extract? (default: number of variables)\n')
@@ -99,12 +99,44 @@ def dimensionalityReduction(dataset):
 
         dec=pca.SPCA(dataset.data,n_components=n_components, alpha=alpha)
 
-    elif s=='4': 
+    elif s=='4':
         s1=raw_input('Number of components to use? (default: number of variables)\n')
         try: n_components=int(s1)
         except: n_components=dataset.data.shape[1]
 
         dec=pca.ICA(dataset.data,n_components=n_components)
+
+    elif s=='5':
+        s1=raw_input('Number of components to use? (default: 2)\n')
+        try: n_components=int(s1)
+        except: n_components=2
+
+        s1=raw_input('Number of neighbors to consider for each point.? (default: 5)\n')
+        try: n_neighbors=int(s1)
+        except: n_neighbors=5
+
+        dec=pca.Isomap(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+
+    elif s=='6':
+        s1=raw_input('Number of components to use? (default: 2)\n')
+        try: n_components=int(s1)
+        except: n_components=2
+
+        s1=raw_input('Number of neighbors to consider for each point.? (default: 5)\n')
+        try: n_neighbors=int(s1)
+        except: n_neighbors=5
+
+        dec=pca.LocallyLinearEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
+    elif s=='7':
+        s1=raw_input('Number of components to use? (default: 2)\n')
+        try: n_components=int(s1)
+        except: n_components=2
+
+        s1=raw_input('Number of neighbors to consider for each point.? (default: 5)\n')
+        try: n_neighbors=int(s1)
+        except: n_neighbors=5
+
+        dec=pca.SpectralEmbedding(dataset.data, n_components=n_components, n_neighbors=n_neighbors)
 
 
     try: dec.fit_model()
