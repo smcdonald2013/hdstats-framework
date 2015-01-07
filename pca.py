@@ -116,7 +116,7 @@ class Isomap:
         self.n_components=n_components
         self.n_neighbors=n_neighbors 
         self.eigen_solver=eigen_solver
-        self.tol_tol
+        self.tol=tol
         self.max_iter=max_iter
         self.path_method=path_method
         self.neighbors_algorithm=neighbors_algorithm
@@ -142,6 +142,7 @@ class LocallyLinearEmbedding:
     def __init__(self, data, n_components=2, n_neighbors=5, reg=0.001, eigen_solver='auto', tol=1e-06, max_iter=100, method='standard', hessian_tol=0.0001, modified_tol=1e-12, neighbors_algorithm='auto', random_state=None):
         self.n_components=n_components
         self.n_neighbors=n_neighbors
+        self.reg=reg
         self.eigen_solver=eigen_solver
         self.tol=tol
         self.max_iter=max_iter
@@ -153,7 +154,7 @@ class LocallyLinearEmbedding:
 
         self.data = data
         self.dataTransformed = None
-        self.obj = manifold.LocallyLinearEmbedding(n_neighbors=self.n_neighbors, n_components=self.n_componenets, reg=self.reg, eigen_solver=self.eigen_solver, tol=self.tol, max_iter=self.max_iter, method=self.method, hessian_tol=self.hessian_tol, modified_tol=self.modified_tol, neighbors_algorithm=self.neighbors_algorithm, random_state=self.random_state)
+        self.obj = manifold.LocallyLinearEmbedding(n_neighbors=self.n_neighbors, n_components=self.n_components, reg=self.reg, eigen_solver=self.eigen_solver, tol=self.tol, max_iter=self.max_iter, method=self.method, hessian_tol=self.hessian_tol, modified_tol=self.modified_tol, neighbors_algorithm=self.neighbors_algorithm, random_state=self.random_state)
 
     def fit_model(self):
         self.dataTransformed = self.obj.fit_transform(self.data)
