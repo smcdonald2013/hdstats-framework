@@ -69,8 +69,8 @@ def clusteringAnalysis(dataset):
         model=clustering.DBSCAN(dataset.data, eps=n)
 
     elif s=='6':
-       # Guided Clustering
-       s=raw_input('Number of clusters, if known?\n')
+        # Guided Clustering
+        s=raw_input('Number of clusters, if known?\n')
         try: n=int(s)
         except: n=0
 

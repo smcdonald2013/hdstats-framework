@@ -17,7 +17,7 @@ class KMeans:
 
         self.data = data
         self.dataTransformed = None
-        self.obj = cluster.MiniBatchKMeans(n_clusters=self.n_clusters, init=self.init, n_init=self.n_init, max_iter=self.max_iter, tol=self.tol, precompute_distances=self.precompute_distances, verbose=self.verbose, random_state=self.random_state, copy_x=self.copy_x, n_jobs=self.n_jobs)
+        self.obj = cluster.KMeans(n_clusters=self.n_clusters, init=self.init, n_init=self.n_init, max_iter=self.max_iter, tol=self.tol, precompute_distances=self.precompute_distances, verbose=self.verbose, random_state=self.random_state, copy_x=self.copy_x, n_jobs=self.n_jobs)
 
     def fit_model(self):
         self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
@@ -50,7 +50,7 @@ class MiniBatchKMeans:
 
         self.data = data
         self.dataTransformed = None
-        self.obj = cluster.KMeans(n_clusters=self.n_clusters, init=self.init, max_iter=self.max_iter, batch_size=self.batch_size, verbose=self.verbose, compute_labels=self.compute_labels, random_state=self.random_state, tol=self.tol, max_no_improvement=self.max_no_improvement, init_size=self.init_size, n_init=self.n_init, reassignment_ratio=self.reassignment_ratio)
+        self.obj = cluster.MiniBatchKMeans(n_clusters=self.n_clusters, init=self.init, max_iter=self.max_iter, batch_size=self.batch_size, verbose=self.verbose, compute_labels=self.compute_labels, random_state=self.random_state, tol=self.tol, max_no_improvement=self.max_no_improvement, init_size=self.init_size, n_init=self.n_init, reassignment_ratio=self.reassignment_ratio)
 
     def fit_model(self):
         self.dataTransformed = self.obj.fit_predict(self.data) # Index of closest cluster
