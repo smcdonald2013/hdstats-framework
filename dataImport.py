@@ -5,7 +5,7 @@ def main(dataset):
 
     # Import data
     while True:
-        s=raw_input('Select:\n 1. Import data array\n 2. Import uncertainty array (assumed 2-sigma, same dimensions as data array) \n 3. Import variable names\n 4. Assign independent variable\n-0. Exit\n')
+        s=raw_input('Select:\n  1. Import data array\n  2. Import uncertainty array (assumed 2-sigma, same dimensions as data array) \n  3. Import variable names\n  4. Assign independent variable\n  5. Assign dependent variable (optional)\n- 0. Exit\n')
         
         if s=='0' or s=='': # default 
             break 
@@ -29,8 +29,15 @@ def main(dataset):
             n=None
             s=raw_input('Enter column number of independent variable (zero-indexed)\n')
             try: n=int(s)
-            except: print('Input not an integer')
+            except: print('Input not an integer. Variable not set')
             dataset.independentVariable=n
+        elif s=='4':
+            # Assign dependent Variable
+            n=None
+            s=raw_input('Enter column number of independent variable (zero-indexed)\n')
+            try: n=int(s)
+            except: print('Input not an integer. Variable not set')
+            dataset.dependentVariable=n
 
     return dataset
 

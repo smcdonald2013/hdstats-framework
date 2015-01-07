@@ -4,13 +4,14 @@ import dataAnalysis
 import dataVisualization
 
 class Dataset(object):
-    def __init__(self, data=None, error=None, variableNameToNumber=None, variableNumberToName=None, dependentVariable=None):
+    def __init__(self, data=None, error=None, variableNameToNumber=None, variableNumberToName=None, independentVariable=None, dependentVariable=None):
         self.data=data   # Numpy array containing full dataset
         # Optional:
         self.error=error # Numpy array containing errors for each data point
         self.variableNameToNumber=variableNameToNumber # Dictonary mapping from variable names to column numbers 
         self.variableNumberToName=variableNumberToName # Dictonary mapping from column numbers to variable names
-        self.dependentVariable=dependentVariable # Column number of dependent variable
+        self.independentVariable=independentVariable # Column number of independent variable
+        self.dependentVariable=dependentVariable # Column number of dependent variable(s)
 
 
 # Create dataset object
