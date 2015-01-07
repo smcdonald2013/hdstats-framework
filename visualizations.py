@@ -41,3 +41,22 @@ class plot_qq:
     def plot(self):
         sm.qqplot(self.data, fit=True, line='s')
         plt.show()
+
+
+class crossplot_components:
+    #Cross-plot the two first principal components from PCA or similar 
+    def __init__(self, c1, c2):
+        self.c1 = c1
+        self.c2 = c2
+
+    def plot(self):
+        ax = plt.gca()
+        ax.set_color_cycle(['b','r','g','c','k','y','m'])
+
+        ax.scatter(self.c1, self.c2)
+        plt.xlabel('Component 1')
+        plt.ylabel('Component 2')
+        plt.title('Cross-plot of two highest-weighted components')
+        plt.axis('tight')
+        plt.show()
+ 

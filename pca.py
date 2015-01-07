@@ -1,5 +1,6 @@
 from sklearn import decomposition
 import numpy as np
+import visualizations as viz
 
 class PCA:
     # standard Principal Component Analysis
@@ -24,7 +25,8 @@ class PCA:
         print '\n'
 
     def plot_results(self):
-        # plot first two prinicpal components against each other 
+        # plot first two prinicpal components against each other
+        viz.crossplot_components(self.dataTransformed[:,0],self.dataTransformed[:,1]).plot()
         # plot all components by sample number or against independent variable
         pass
 
