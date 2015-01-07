@@ -1,7 +1,7 @@
 from sklearn import linear_model
 import statsmodels.api as sm
 import checks as c
-import boxcox as bc # Missing file, causes error on run
+import boxcox as bc
 import lasso as lasso
 import elasticnet as elasticnet
 import ridge as ridge

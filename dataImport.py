@@ -62,7 +62,7 @@ def delimited():
     delim=raw_input('Delimiter?\n')
     data=None
     try: data=np.genfromtxt(filename, delimiter=delim, dtype=float)
-    except: print('%s: Invalid filename or delimiter\n', filename)
+    except: print '%s: Invalid filename or delimiter\n' % filename
     return data
 
 def binary():
@@ -70,6 +70,6 @@ def binary():
     datatype=raw_input('Data type? (e.g. float)\n')
     data=None
     try: data=np.fromfile(filename, dtype=datatype, count=-1, sep='')
-    except: print('%s: Invalid file name or data type\n', filename)
+    except: print '%s: Invalid file name or data type\n' % filename
     return data
 
