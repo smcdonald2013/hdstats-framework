@@ -3,7 +3,7 @@ import numpy as np
 
 def main(dataset):
     while True:
-        s=raw_input('Select data cleaning method:\n 1. Remove outliers by standard deviations from the mean\n 2. Remove outliers by percentile\n 3. Replace NaNs\n-0. Exit\n')
+        s=raw_input('Select data cleaning method:\n  1. Remove outliers by standard deviations from the mean\n  2. Remove outliers by percentile\n  3. Replace NaNs\n  4. De-mean dataset\n  5. Normalize variance\n- 0. Exit\n')
         if s=='0' or s=='': # default
             break
         elif s=='1':
@@ -12,6 +12,10 @@ def main(dataset):
             dataset=pctclean(dataset)
         elif s=='3':
             dataset=removeNaNs(dataset)
+        elif s=='4':
+            dataset=demean(dataset)
+        elif s=='5':
+            dataset=devar(dataset)
         else:
             print('Input not recognized\n')
     return dataset
@@ -58,6 +62,18 @@ def removeNaNs(dataset):
 
     return dataset
 
+def demean(dataset):
+    #Subtract mean, column-wise
+    for i in range(dataset.data.shape[1]):
+        dataset.data[:,i] -= nanmean(dataset.data[:,i])
+    return dataset
+
+def devar(dataset):
+    # Normalize variance by dividing each column by its standard deviation
+    for i in range(dataset.data.shape[1]):
+        if np.std(dataset.data[:,i]) > 0:
+            dataset.data[:,i] /= np.std(dataset.data[:,i])
+    return dataset
 
 def nanmean(data):
     return np.mean(data[~np.isnan(data)])
