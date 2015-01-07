@@ -41,3 +41,24 @@ class plot_qq:
     def plot(self):
         sm.qqplot(self.data, fit=True, line='s')
         plt.show()
+
+class plot_comps:
+    #2-D plot of one component vs another
+    def __init__(self,comp1, comp2, compNums, classes=False, classNames=False):
+        self.comp1 = comp1
+        self.comp2 = comp2
+        self.compNums = compNums
+        self.classes = classes
+        self.classNames = classNames
+
+    def plot(self):
+        if self.classes==False:
+            plt.scatter(comp1, comp2)
+            plt.xlabel('Component ', compNums[0])
+            plt.ylabel('Component ', compNums[1])
+            plt.show()
+        else:
+            for i, j, class_name in zip('rgb', [1,2,3], self.classNames):
+                plt.scatter(self.comp1[self.classes == j], self.comp2[self.classes == j], c=i, label=class_name)
+            plt.legend()
+            plt.show()
