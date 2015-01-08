@@ -55,6 +55,7 @@ class plot_comps:
         for i, j, class_name in zip('rgb', [1,2,3], self.classNames):
             plt.scatter(self.comp1[self.classes == j], self.comp2[self.classes == j], c=i, label=class_name)
         plt.legend()
+        plt.show()
 
 class crossplot_components:
     #Cross-plot the two first principal components from PCA or similar 
