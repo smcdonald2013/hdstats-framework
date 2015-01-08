@@ -43,7 +43,7 @@ class plot_qq:
         plt.show()
 
 class plot_comps:
-    #2-D plot of one component vs another
+    #2-D plot of one component vs another, with classes 
     def __init__(self,comp1, comp2, compNums, classes=False, classNames=False):
         self.comp1 = comp1
         self.comp2 = comp2
@@ -55,4 +55,35 @@ class plot_comps:
         for i, j, class_name in zip('rgb', [1,2,3], self.classNames):
             plt.scatter(self.comp1[self.classes == j], self.comp2[self.classes == j], c=i, label=class_name)
         plt.legend()
+
+class crossplot_components:
+    #Cross-plot the two first principal components from PCA or similar 
+    def __init__(self, c1, c2):
+        self.c1 = c1
+        self.c2 = c2
+
+    def plot(self):
+        ax = plt.gca()
+        ax.scatter(self.c1, self.c2)
+
+        plt.xlabel('Component 1')
+        plt.ylabel('Component 2')
+        plt.title('Cross-plot of two highest-weighted components')
+        plt.axis('tight')
+        plt.show()
+
+class plot_clusters:
+    #Cross-plot the two first variables, colored by cluster index
+    def __init__(self, x, y, cluster_index):
+        self.x = x
+        self.y = y
+        self.cluster_index = cluster_index
+
+    def plot(self):
+        ax = plt.gca()
+        ax.scatter(self.x, self.y, c=self.cluster_index)
+
+        plt.xlabel('Variable 1')
+        plt.ylabel('Variable 2')
+        plt.axis('tight')
         plt.show()

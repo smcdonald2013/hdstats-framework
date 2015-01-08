@@ -91,6 +91,8 @@ def clusteringAnalysis(dataset):
     except Exception, e: print 'Error fitting model: %s' % e
     try: model.print_results()
     except Exception, e: print 'Error: %s' % e
+    try: model.plot_results()
+    except Exception, e: print 'Error: %s' % e
 
 
     return dataset
@@ -166,7 +168,7 @@ def dimensionalityReduction(dataset):
     elif s=='8':
         s1=raw_input('Do you want to extract components that are orthogonal to each other?\n 0. No\n-1. Yes\n')
         s2=raw_input('How many components do you want to find? (default: number of variables)\n')
-        try: n_components=int(s1)
+        try: n_components=int(s2)
         except: n_components=dataset.data.shape[1]
 
         if s1=='0':
@@ -180,6 +182,8 @@ def dimensionalityReduction(dataset):
     try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
     try: model.print_results()
+    except Exception, e: print 'Error: %s' % e
+    try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
 
 #    dataset.dataTransformed = model.dataTransformed
