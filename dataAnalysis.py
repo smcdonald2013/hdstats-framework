@@ -236,7 +236,7 @@ def regression(dataset):
 
     elif s=='6':
 
-        reg=omp.OMP(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
+        model=omp.OMP(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
     elif s=='0':
         sp = raw_input('Is the underlying model assumed to be sparse? (Default is no)\n  1. Yes\n- 0. No\n')
@@ -248,7 +248,7 @@ def regression(dataset):
             print('\nRunning OLS Regression')
             model = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=spVal) #independent variable is assumed to be in the first column
             model.fit_model()
-            print('\nRegression summary', reg.fitted_model.coef_)
+            print('\nRegression summary', model.fitted_model.coef_)
             print('\nPerforming assumption checks')
             model.checks()
             print('\nTaking any necessary corrective actions')
