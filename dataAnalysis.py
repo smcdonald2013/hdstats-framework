@@ -193,7 +193,7 @@ def dimensionalityReduction(dataset):
     return dataset
  
 def regression(dataset):
-    s=raw_input('Select regression technique:\n 1. OLS\n 2. Lasso\n 3. Ridge\n 4. Elastic Net\n 5. Lars\n 6. OMP\n 0. Guide me\n')
+    s=raw_input('Select regression technique:\n- 1. OLS\n  2. Lasso\n  3. Ridge\n  4. Elastic Net\n  5. Lars\n  6. OMP\n  0. Guide me\n')
 
     if s=='1' or s=='': # default
         model=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #independent variable is assumed to be in the first column
@@ -274,7 +274,7 @@ def regression(dataset):
     return dataset
 
 def classification(dataset):
-    s=raw_input('Select classification technique:\n 1. Logistic Regression\n 2. LDA\n 3. QDA\n')
+    s=raw_input('Select classification technique:\n- 1. Logistic Regression\n  2. LDA\n  3. QDA\n')
 
     if s=='1' or s=='': # default
         model=logistic.LOGISTIC(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #class labels are assumed to be in the first column
