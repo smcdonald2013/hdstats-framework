@@ -39,14 +39,14 @@ def clusteringAnalysis(dataset):
         s1=raw_input('Number of clusters to find? (default: 8)\n')
         try: n=int(s1)
         except: n=8
-        model=clustering.KMeans(dataset.data,n_clusters=n)
+        model=clustering.KMeans(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable],n_clusters=n)
 
     elif s=='2':
         # MiniBatchKMeans Clustering
         s1=raw_input('Number of clusters to find? (default: 8)\n')
         try: n=int(s1)
         except: n=8
-        model=clustering.MiniBatchKMeans(dataset.data,n_clusters=n)
+        model=clustering.MiniBatchKMeans(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable],n_clusters=n)
 
     elif s=='3':
         # MeanShift Clustering
@@ -57,14 +57,14 @@ def clusteringAnalysis(dataset):
         s1=raw_input('Number of clusters to find? (default: 8)\n')
         try: n=int(s1)
         except: n=8
-        model=clustering.SpectralClustering(dataset.data,n_clusters=n)
+        model=clustering.SpectralClustering(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable],n_clusters=n)
 
     elif s=='5':
         # DBSCAN
         s1=raw_input('Neighborhood size? (default: 0.5)\n')
         try: n=float(s1)
         except: n=0.5
-        model=clustering.DBSCAN(dataset.data, eps=n)
+        model=clustering.DBSCAN(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable], eps=n)
 
     elif s=='6':
         # Guided Clustering
@@ -75,15 +75,15 @@ def clusteringAnalysis(dataset):
         if n>0 & dataset.data.shape[0] < 10000:
             print 'Known number of clusters and <10k samples: Using KMeans clustering\n'
             # Use KMeans clustering
-            model=clustering.KMeans(dataset.data,n_clusters=n)
+            model=clustering.KMeans(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable],n_clusters=n)
         elif n>0:
             print 'Known number of clusters and >10k samples: Using MiniBatch KMeans\n'
             # Use MiniBatch KMeans
-            model=clustering.MiniBatchKMeans(dataset.data,n_clusters=n)
+            model=clustering.MiniBatchKMeans(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable],n_clusters=n)
         elif dataset.data.shape[0] < 10000:
             print 'Unknown number of clusters and <10k samples: Using MeanShift\n'
             # Use MeanShift
-            model=clustering.MeanShift(dataset.data)
+            model=clustering.MeanShift(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable])
         else:
             print 'Too many samples to analyze without knowing number of categories\n'
 
