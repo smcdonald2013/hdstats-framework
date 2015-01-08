@@ -10,6 +10,7 @@ def main(dataset):
             break 
         elif s=='1':
             dataset.data=getArray()
+            dataset.error=None # Importing a new dataset resets uncertainties
         elif s=='2': 
             # Make dictionaries mapping from variable names to column numbers, and vice versa
             filename=raw_input('Name of delimited ASCII file containing variable names?\n')
