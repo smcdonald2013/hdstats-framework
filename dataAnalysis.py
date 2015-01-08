@@ -186,7 +186,9 @@ def dimensionalityReduction(dataset):
     try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
 
-#    dataset.dataTransformed = model.dataTransformed
+    s=raw_input('Replace dataset with transformed dataset?\n- 0. No\n  1. Yes\n')
+    if s=='1':
+        dataset.data = model.dataTransformed
     
     return dataset
  
