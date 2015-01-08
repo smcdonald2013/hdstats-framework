@@ -91,9 +91,9 @@ def bootstrap(dataset):
     nvars = dataset.data.shape[1]
 
     # Determine number of resamplings to perform
-    s=raw_input('Perform how many bootstrap resamplings? (default 10^6 / data length)\n')
+    s=raw_input('Perform how many bootstrap resamplings? (default 10^4 / data length)\n')
     try: n=int(s)
-    except: n=int(1000000 / nsamples)
+    except: n=int(10000 / nsamples)
 
     # Check if data has been resampled before, cut down to size if so
     if dataset.data.shape[0] > nsamples:
