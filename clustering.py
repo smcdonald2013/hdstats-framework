@@ -1,5 +1,5 @@
 from sklearn import cluster
-
+import visualizations as viz
 
 # Class to interface with KMeans Clustering object from scikit-learn cluster module
 class KMeans:
@@ -29,6 +29,7 @@ class KMeans:
 
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
+        viz.plot_clusters(self.data[:,0], self.data[:,1], self.dataTransformed).plot()
         pass
 
 

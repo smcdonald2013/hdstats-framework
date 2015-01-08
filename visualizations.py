@@ -58,4 +58,19 @@ class crossplot_components:
         plt.title('Cross-plot of two highest-weighted components')
         plt.axis('tight')
         plt.show()
- 
+
+class plot_clusters:
+    #Cross-plot the two first variables, colored by cluster index
+    def __init__(self, x, y, cluster_index):
+        self.x = x
+        self.y = y
+        self.cluster_index = cluster_index
+
+    def plot(self):
+        ax = plt.gca()
+        ax.scatter(self.x, self.y, c=self.cluster_index)
+
+        plt.xlabel('Variable 1')
+        plt.ylabel('Variable 2')
+        plt.axis('tight')
+        plt.show()

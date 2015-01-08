@@ -89,6 +89,8 @@ def clusteringAnalysis(dataset):
     except Exception, e: print 'Error fitting model: %s' % e
     try: model.print_results()
     except Exception, e: print 'Error: %s' % e
+    try: model.plot_results()
+    except Exception, e: print 'Error: %s' % e
 
     return dataset
 
