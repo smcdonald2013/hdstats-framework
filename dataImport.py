@@ -51,14 +51,15 @@ def main(dataset):
 
 def getArray():
     # Import numeric array
-    s=raw_input('Select file type to import numeric array:\n- 1. Delimited ASCII (e.g. .csv)\n  2. Binary\n')
-    if s=='1' or s=='': # default
-        data=delimited()
-    elif s=='2':
-        data=binary()
-    else:
-        print 'Input not recognized\n'
-        return None
+    data=None
+    while data==None:
+        s=raw_input('Select file type to import numeric array:\n- 1. Delimited ASCII (e.g. .csv)\n  2. Binary\n')
+        if s=='1' or s=='': # default
+            data=delimited()
+        elif s=='2':
+            data=binary()
+        else:
+            print 'Input not recognized\n'
 
     # Store variables in columns by default
     variablesAsColumns=raw_input('Are variables stored as:\n  0. rows\n- 1. columns\n')
