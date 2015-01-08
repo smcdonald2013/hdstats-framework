@@ -250,7 +250,7 @@ def regression(dataset):
             model.fit_model()
             print('\nRegression summary', model.fitted_model.coef_)
             print('\nPerforming assumption checks')
-            model.checks()
+            model.check_model()
             print('\nTaking any necessary corrective actions')
             model.mcAction()
             model.acAction()

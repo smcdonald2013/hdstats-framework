@@ -6,6 +6,7 @@ import lasso as lasso
 import elasticnet as elasticnet
 import ridge as ridge
 import numpy as np
+import visualizations as viz
 
 class SGD:
     #Implements ordinary least squares regression, with assumption checks
