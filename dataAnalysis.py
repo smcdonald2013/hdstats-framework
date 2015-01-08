@@ -32,16 +32,16 @@ def main(dataset):
 
 
 def clusteringAnalysis(dataset):
-    s=raw_input('Select clustering method:\n- 1. KMeans Clustering \n  2. MiniBatch KMeans Clustering\n  3. MeanShift\n  4. Spectral Clustering\n  5. DBSCAN (Density-Based Spatial Clustering of Applications with Noise)\n  6. Guide me\n')
+    s=raw_input('Select clustering method:\n  1. KMeans Clustering \n- 2. MiniBatch KMeans Clustering\n  3. MeanShift\n  4. Spectral Clustering\n  5. DBSCAN (Density-Based Spatial Clustering of Applications with Noise)\n  6. Guide me\n')
 
-    if s=='1' or s=='': # default
+    if s=='1':
         # KMeans Clustering
         s1=raw_input('Number of clusters to find? (default: 8)\n')
         try: n=int(s1)
         except: n=8
         model=clustering.KMeans(dataset.data[:,np.arange(dataset.data.shape[1]) != dataset.independentVariable],n_clusters=n)
 
-    elif s=='2':
+    elif s=='2' or s=='': # default
         # MiniBatchKMeans Clustering
         s1=raw_input('Number of clusters to find? (default: 8)\n')
         try: n=int(s1)
