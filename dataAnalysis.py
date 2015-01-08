@@ -15,7 +15,7 @@ import qda
 
 def main(dataset):
     while True:
-        s=raw_input('Select data analysis task:\n  1. Regression\n  2. Dimensionality reduction\n  3. Clustering\n  4. Classification\n-  0. Exit\n')
+        s=raw_input('Select data analysis task:\n  1. Regression\n  2. Dimensionality reduction\n  3. Clustering\n  4. Classification\n- 0. Exit\n')
         if s=='0' or s=='': # default
             break
         elif s=='1':
@@ -91,6 +91,7 @@ def clusteringAnalysis(dataset):
     except Exception, e: print 'Error fitting model: %s' % e
     try: model.print_results()
     except Exception, e: print 'Error: %s' % e
+
 
     return dataset
 
@@ -189,21 +190,21 @@ def regression(dataset):
     s=raw_input('Select regression technique:\n 1. OLS\n 2. Lasso\n 3. Ridge\n 4. Elastic Net\n 5. Lars\n 6. OMP\n 0. Guide me\n')
 
     if s=='1' or s=='': # default
-        reg=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #independent variable is assumed to be in the first column
+        model=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #independent variable is assumed to be in the first column
 
     elif s=='2':
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
 
-        reg=lasso.LASSO(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
+        model=lasso.LASSO(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
 
     elif s=='3':
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
 
-        reg=ridge.RIDGE(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
+        model=ridge.RIDGE(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
 
     elif s=='4':
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
@@ -214,7 +215,7 @@ def regression(dataset):
         try: l1_ratio = int(s1)
         except: l1_ratio=.5
 
-        reg=elasticnet.ELASTICNET(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
+        model=elasticnet.ELASTICNET(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
 
     elif s=='5':
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
@@ -225,7 +226,7 @@ def regression(dataset):
         try: l1_ratio = int(s1)
         except: l1_ratio=.5
 
-        reg=lars.LARS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
+        model=lars.LARS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
 
     elif s=='6':
 
@@ -239,31 +240,30 @@ def regression(dataset):
             spVal = False
         if dataset.data.shape[0] < 100000:
             print('\nRunning OLS Regression')
-            reg = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=spVal) #independent variable is assumed to be in the first column
-            reg.fit_model()
+            model = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=spVal) #independent variable is assumed to be in the first column
+            model.fit_model()
             print('\nRegression summary', reg.fitted_model.coef_)
             print('\nPerforming assumption checks')
-            reg.checks()
+            model.checks()
             print('\nTaking any necessary corrective actions')
-            reg.mcAction()
-            reg.acAction()
-            reg.linAction()
-            reg.singAction()
-            reg.homoskeAction()
+            model.mcAction()
+            model.acAction()
+            model.linAction()
+            model.singAction()
+            model.homoskeAction()
         else:
             print('\nDataset is very large, running SGD Regression')
-            reg = sgd.SGD(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
-            reg.fit_model()
-            print('\nRegression summary', reg.fitted_model.coef_)
+            model = sgd.SGD(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
 
 
-    try: reg.fit_model()
+    try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
-    try: reg.print_results()
+    try: model.print_results()
     except Exception, e: print 'Error: %s' % e
-    try: reg.plot_results()
+    try: model.check_model()
     except Exception, e: print 'Error: %s' %e
-#    dataset.dataTransformed = dec.dataTransformed
+    try: model.plot_results()
+    except Exception, e: print 'Error: %s' %e
 
     return dataset
 
@@ -271,20 +271,19 @@ def classification(dataset):
     s=raw_input('Select classification technique:\n 1. Logistic Regression\n 2. LDA\n 3. QDA\n')
 
     if s=='1' or s=='': # default
-        classifier=logistic.LOGISTIC(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #class labels are assumed to be in the first column
+        model=logistic.LOGISTIC(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #class labels are assumed to be in the first column
 
     elif s=='2':
-        classifier=lda.LDA(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
+        model=lda.LDA(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
 
     elif s=='3':
-        classifier=qda.QDA(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
+        model=qda.QDA(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
 
-    try: classifier.fit_model()
+    try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
-    try: classifier.print_results()
+    try: model.print_results()
     except Exception, e: print 'Error: %s' % e
-    try: classifier.plot_results()
+    try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
-#    dataset.dataTransformed = dec.dataTransformed
 
     return dataset

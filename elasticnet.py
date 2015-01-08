@@ -1,5 +1,6 @@
 from sklearn import linear_model
 import statsmodels.api as sm
+import checks as c
 import visualizations as viz
 import numpy as np
 
@@ -23,7 +24,7 @@ class ELASTICNET:
         self.fit_model()
         self.regObj = linear_model.ElasticNet(alpha=self.regObj.alpha_, l1_ratio=self.regObj.l1_ratio_, copy_X=False)
 
-    def checks(self):
+    def check_model(self):
         #Variety of checks for elastic net fit
         self.acCheck = c.acCheck(self.residuals)
         self.acCheck.check()

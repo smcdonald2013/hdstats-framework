@@ -2,6 +2,7 @@ from sklearn import linear_model
 import statsmodels.api as sm
 import checks as c
 import numpy as np
+import visualizations as viz
 
 class LOGISTIC:
     #Implements logistic regression, with assumption checks
@@ -16,32 +17,21 @@ class LOGISTIC:
     def fit_model(self):
         self.fitted_model = self.classObj.fit(self.data, self.classes)
 
-    def checks(self):
+    def check_model(self):
         self.mcCheck = c.mcCheck(self.data)
         self.mcCheck.check()
         #self.acCheck = c.acCheck(self.residuals)
         #self.acCheck.check()
         #self.linCheck = c.linCheck(self.independentVar, self.dependentVar)
         #self.linCheck.check()
-        self.hdCheck = c.highdimCheck(self.data)
-        self.hdCheck.check()
-
-    def Actions(self):
-        self.mvnAction()
-        self.eqCovAction()
 
     def print_results(self):
         print('\n Logistic Coefficients')
         print(self.classObj.coef_)
 
-    def acAction(self):
-        if self.acCheck.ljungbox[1][0] < .05:
-            print "Residuals are autocorrelated. Implementing GLSAR."
-            return sm.regression.linear_model.GLSAR(self.dependentVar, self.independentVar)
-        else:
-            print "Residuals appear to be uncorrelated."
+    def plot_results(self):
+        viz.plot_comps(self.data[:,0], self.data[:,1], compNums=[1,2], classes=self.classes, classNames=['setosa','versicolor','virginica']).plot()
 
-    def singAction(self):
-        if self.singCheck == True:
-            print "Singular matrix"
-            #Remove linearly dependent rows
+    def action_model(self):
+        self.mvnAction()
+        self.eqCovAction()

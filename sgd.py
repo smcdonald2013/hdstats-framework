@@ -24,7 +24,7 @@ class SGD:
         self.fitted_model = self.regObj.fit(self.independentVar, self.dependentVar)
         self.residuals = self.dependentVar - self.regObj.decision_function(self.independentVar)
 
-    def checks(self):
+    def check_model(self):
         self.acCheck = c.acCheck(self.residuals)
         self.acCheck.check()
         self.linCheck = c.linCheck(self.independentVar, self.dependentVar)
@@ -40,7 +40,17 @@ class SGD:
         self.highdimCheck = c.highdimCheck(self.independentVar)
         self.highdimCheck.check()
 
-    def SGD(self):
+    def print_results(self):
+        print('\n OLS Coefficients')
+        print(self.regObj.coef_)
+        print('\n R-Squared')
+        print(self.regObj.score(self.independentVar, self.dependentVar))
+
+    def plot_results(self):
+        viz.plot_residuals(self.residuals,self.regObj.predict(self.independentVar)).plot()
+        viz.plot_qq(self.residuals).plot()
+
+    def action_model(self):
         self.acAction()
         self.mcAction()
         self.linAction()

@@ -28,7 +28,7 @@ class LASSO:
         self.fit_model()
         self.regObj = linear_model.Lasso(alpha=self.regObj.alpha_, copy_X=False)
 
-    def checks(self):
+    def check_model(self):
         #Variety of checks for lasso fit
         self.acCheck = c.acCheck(self.residuals)
         self.acCheck.check()

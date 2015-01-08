@@ -1,5 +1,7 @@
 from sklearn import linear_model
 import statsmodels.api as sm
+import checks as c
+import visualizations as viz
 
 class RIDGE:
     #Implements ridge regression, with assumption checks
@@ -19,7 +21,7 @@ class RIDGE:
         self.fit_model()
         self.regObj = linear_model.Ridge(alpha=self.regObj.alpha_, copy_X=False)
 
-def checks(self):
+    def check_model(self):
         #Variety of checks for ridge fit
         self.acCheck = c.acCheck(self.residuals)
         self.acCheck.check()
@@ -31,3 +33,13 @@ def checks(self):
         self.mcCheck.check()
         self.homoskeCheck = c.homoskeCheck(self.residuals, self.independentVar)
         self.homoskeCheck.check()
+
+    def print_results(self):
+        print('\n OLS Coefficients')
+        print(self.regObj.coef_)
+        print('\n R-Squared')
+        print(self.regObj.score(self.independentVar, self.dependentVar))
+
+    def plot_results(self):
+        viz.plot_residuals(self.residuals,self.regObj.predict(self.independentVar)).plot()
+        viz.plot_qq(self.residuals).plot()

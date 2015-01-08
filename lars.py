@@ -1,5 +1,7 @@
 from sklearn import linear_model
 import statsmodels.api as sm
+import visualizations as viz
+import checks as c
 
 class LARS:
     #Implements LARS regression, with assumption checks
@@ -27,8 +29,12 @@ class LARS:
         self.normCheck.check()
 
     def print_results(self):
-        #
+        #Prints models coefficients and R-Squared
         print('\n Lars Coefficients')
         print(self.regObj.coef_)
         print('\n R-Squared')
         print(self.regObj.score(self.independentVar, self.dependentVar))
+
+    def plot_results(self):
+        viz.plot_residuals(self.residuals,self.regObj.predict(self.independentVar)).plot()
+        viz.plot_qq(self.residuals).plot()

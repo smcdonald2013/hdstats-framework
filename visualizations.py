@@ -52,13 +52,7 @@ class plot_comps:
         self.classNames = classNames
 
     def plot(self):
-        if self.classes==False:
-            plt.scatter(comp1, comp2)
-            plt.xlabel('Component ', compNums[0])
-            plt.ylabel('Component ', compNums[1])
-            plt.show()
-        else:
-            for i, j, class_name in zip('rgb', [1,2,3], self.classNames):
-                plt.scatter(self.comp1[self.classes == j], self.comp2[self.classes == j], c=i, label=class_name)
-            plt.legend()
-            plt.show()
+        for i, j, class_name in zip('rgb', [1,2,3], self.classNames):
+            plt.scatter(self.comp1[self.classes == j], self.comp2[self.classes == j], c=i, label=class_name)
+        plt.legend()
+        plt.show()
