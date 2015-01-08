@@ -5,15 +5,12 @@ def main(dataset):
 
     # Import data
     while True:
-        s=raw_input('Select:\n  1. Import data array\n  2. Import uncertainty array\t\t\t(optional) \n  3. Import variable names\t\t\t(optional)\n  4. Assign independent variable\t\t(optional)\n  5. Assign dependent variable\t\t\t(optional)\n- 0. Exit\n')
+        s=raw_input('Select:\n  1. Import data array\n  2. Import variable names\t\t\t(optional)\n  3. Set uncertainty array\t\t\t(optional)\n  4. Assign independent variable\t\t(optional)\n  5. Assign dependent variable\t\t\t(optional)\n- 0. Exit\n')
         if s=='0' or s=='': # default 
             break 
         elif s=='1':
             dataset.data=getArray()
-        elif s=='2':
-            print 'Assumed 2-sigma, same dimensions as data array'
-            dataset.error=getArray()
-        elif s=='3': 
+        elif s=='2': 
             # Make dictionaries mapping from variable names to column numbers, and vice versa
             filename=raw_input('Name of delimited ASCII file containing variable names?\n')
             fp=open(filename)
@@ -24,6 +21,24 @@ def main(dataset):
             dataset.variableNameToNumber=dict((firstline[i],i) for i in range(len(firstline)))
             dataset.variableNumberToName={y: x for x, y in dataset.variableNameToNumber.items()}
             fp.close()
+        elif s=='3':
+            # Import uncertainty array
+            if dataset.data==None:
+                print 'Error: must import data first'
+            else:
+                s1=raw_input('Type of uncertainty:\n- 1. Set global relative uncertainty\n  2. Import relative uncertainty matrix\n  3. Import absolute uncertainty matrix\n')
+                if s1=='1' or s1=='':
+                    s2=raw_input('Enter global relative 2-sigma (percent) uncertainty (default: 5%)\n')
+                    try: n = float(s2)
+                    except: n = 5
+                    dataset.error = dataset.data * n / 100
+                elif s1=='2':
+                    print 'Assumed 2-sigma (percent), same dimensions as data array\n'
+                    dataset.error = getArray()
+                    dataset.error = dataset.data * dataset.error / 100
+                elif s1=='3':
+                    print 'Assumed 2-sigma, same dimensions as data array\n'
+                    dataset.error = getArray()
         elif s=='4':
             # Assign independent Variable
             n=None
