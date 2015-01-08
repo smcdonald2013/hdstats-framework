@@ -30,7 +30,6 @@ class KMeans:
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
         viz.plot_clusters(self.data[:,0], self.data[:,1], self.dataTransformed).plot()
-        pass
 
 
 # Class to interface with MiniBatch KMeans Clustering object from scikit-learn cluster module
@@ -63,7 +62,7 @@ class MiniBatchKMeans:
 
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
-        pass
+        viz.plot_clusters(self.data[:,0], self.data[:,1], self.dataTransformed).plot()
 
 # Class to interface with MeanShift clustering object from scikit-learn cluster module
 # No need to know number of clusters a priori
@@ -89,7 +88,7 @@ class MeanShift:
 
     def plot_results(self):
         # plot cluster centers along with all data, colored by nearest cluster
-        pass
+        viz.plot_clusters(self.data[:,0], self.data[:,1], self.dataTransformed).plot()
 
 
 # Class to interface with Spectral Clustering object from scikit-learn cluster module
@@ -120,7 +119,7 @@ class SpectralClustering:
 
     def plot_results(self):
         # plot data, colored by nearest cluster
-        pass
+        viz.plot_clusters(self.data[:,0], self.data[:,1], self.dataTransformed).plot()
 
 
 # Class to interface with DBSCAN (Density-Based Spatial Clustering of Applications with Noise) object from scikit-learn cluster module
@@ -146,5 +145,5 @@ class DBSCAN:
 
     def plot_results(self):
         # plot data, colored by nearest cluster
-        pass
+        viz.plot_clusters(self.data[:,0], self.data[:,1], self.dataTransformed).plot()
 
