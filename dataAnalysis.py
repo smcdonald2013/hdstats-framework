@@ -239,7 +239,7 @@ def regression(dataset):
         reg=omp.OMP(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
     elif s=='0':
-        sp = raw_input('Is the underlying model assumed to be sparse? (Default is no)\n 1.Yes\n 2.No\n')
+        sp = raw_input('Is the underlying model assumed to be sparse? (Default is no)\n  1. Yes\n- 0. No\n')
         if sp=='1':
             spVal = True
         else:
