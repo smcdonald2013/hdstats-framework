@@ -7,44 +7,51 @@ import elasticnet as elasticnet
 import ridge as ridge
 import numpy as np
 import visualizations as viz
+import regClass as rc
 
-class OLS:
-    #Implements ordinary least squares regression, with assumption checks
+class OLS(rc.REG):
+    """Object which performs ordinary least squares regression, checks assumptions, and makes plots
 
-    def __init__(self, indepVar, depVar, sparse=False):
-        self.dependentVar = depVar
-        self.independentVar = indepVar
-        self.regObj = linear_model.LinearRegression()
-        self.sparse = sparse
+    Methods:
+    __init__ -- inherits from regression base class
+    fit_model -- inherits from regression base class
+    check_model
+    print_results -- inherits from regression base class
+    plot_results
+    model_actions
 
-    def fit_model(self):
-        self.fitted_model = self.regObj.fit(self.independentVar, self.dependentVar)
-        self.residuals = self.dependentVar - self.regObj.decision_function(self.independentVar)
+    Instance Variables:
+    self.regObj -- primary regression object, from scikit library
+    self.residuals -- vector, 1xnObservations, containing residuals of fit
+    """
 
     def check_model(self):
-        self.acCheck = c.acCheck(self.residuals)
-        self.acCheck.check()
+        """Checks assumptions of OLS regression. Inherits 4 from regression base class and adds 3 additional tests 
+
+        Checks:
+        Multicollinearity -- Tests for multicollinearity of the design matrix. Inherited from regression base class
+        Autocorrelation -- Tests for autocorrelation of the residuals. Inherited from regression base class
+        High-Dimensionality -- Checks if the data is high-dimensional (p>>n). Inherited from regression base class
+        Singular -- Checks if data matrix is singular. Inherited from regression base class
+        Linearity -- Tests if linearity assumption of OLS appears justified
+        Gaussian Residuals -- Tests if the residuals appear to come from a Gaussian distribution
+        """
+        rc.REG.check_model(self)
         self.linCheck = c.linCheck(self.independentVar, self.dependentVar)
         self.linCheck.check()
         self.normCheck = c.normCheck(self.residuals)
         self.normCheck.check()
-        self.mcCheck = c.mcCheck(self.independentVar, self.dependentVar, self.residuals)
-        self.mcCheck.check()
         self.homoskeCheck = c.homoskeCheck(self.residuals, self.independentVar)
         self.homoskeCheck.check()
-        self.singCheck = c.singCheck(self.independentVar)
-        self.singCheck.check()
-        self.highdimCheck = c.highdimCheck(self.independentVar)
-        self.highdimCheck.check()
-
-    def print_results(self):
-        print('\n OLS Coefficients')
-        print(self.regObj.coef_)
-        print('\n R-Squared')
-        print(self.regObj.score(self.independentVar, self.dependentVar))
 
     def plot_results(self):
-        viz.plot_residuals(self.residuals,self.regObj.predict(self.independentVar)).plot()
+        """Creates the base regression plots as well as a qq-Plot
+
+        Plots:
+        Residual Plots -- plot of residuals vs fitted values. Inherited from regression base class
+        QQ-Plot -- plot of the residual empirical quantiles against those of a normal distribution 
+        """
+        rc.REG.plot_results(self)
         viz.plot_qq(self.residuals).plot()
 
     def model_actions(self):

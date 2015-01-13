@@ -2,38 +2,37 @@ from sklearn import linear_model
 import statsmodels.api as sm
 import checks as c
 import visualizations as viz
+import regClass as rc
 
-class OMP:
-    #Implements orthogonal matching pursuit regression, with assumption checks
+class OMP(rc.REG):
+    """Object which performs orthogonal matching pursuit regression, checks assumptions, and makes plots
+
+    Methods:
+    __init__
+    fit_model -- Inherits from regression base class
+    check_model -- Inherits from regression base class
+    print_results -- Inherits from regression base class
+    plot_results
+
+    Instance Variables:
+    self.regObj -- primary regression object, from scikit library
+    self.residuals -- vector, 1xnObservations, containing residuals of fit
+    """
 
     def __init__(self, indepVar, depVar):
-        self.dependentVar = depVar
-        self.independentVar = indepVar
+        """Constructs class object, including variable setting and lasso object creation
+
+        Instance Variables:
+        self.independentVar -- Inherited from regression baseclass
+        self.dependentVar -- Inherited from regression baseclass
+        self.alpha
+        self.regObj
+        """
+        rc.REG.__init__(self, indepVar, depVar)
         self.regObj = linear_model.OrthogonalMatchingPursuit()
 
-    def fit_model(self):
-        self.fitted_model = self.regObj.fit(X=self.independentVar, y=self.dependentVar)
-        self.residuals = self.dependentVar - self.regObj.decision_function(self.independentVar)
-
-    def check_model(self):
-        #Variety of checks for omp fit
-        self.acCheck = c.acCheck(self.residuals)
-        self.acCheck.check()
-        self.linCheck = c.linCheck(self.independentVar, self.dependentVar)
-        self.linCheck.check()
-        self.normCheck = c.normCheck(self.residuals)
-        self.normCheck.check()
-        self.mcCheck = c.mcCheck(self.independentVar, self.dependentVar, self.residuals)
-        self.mcCheck.check()
-        self.homoskeCheck = c.homoskeCheck(self.residuals, self.independentVar)
-        self.homoskeCheck.check()
-
-    def print_results(self):
-        print('\n OMP Coefficients')
-        print(self.regObj.coef_)
-        print('\n R-Squared')
-        print(self.regObj.score(self.independentVar, self.dependentVar))
-
     def plot_results(self):
-        viz.plot_residuals(self.residuals,self.regObj.predict(self.independentVar)).plot()
+        """Create the base regression plots as well as a regularization path plot
+        """
+        rc.REG.plot_results(self)
         viz.plot_qq(self.residuals).plot()
