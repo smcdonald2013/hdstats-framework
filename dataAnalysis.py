@@ -1,17 +1,17 @@
 import sklearn # scikit-learn
 import numpy as np
-import ols
-import sgd
 import lda
 import pca
-import lasso
-import elasticnet
-import ridge
-import lars
-import omp
 import clustering
 import logistic
 import qda
+from reg import ols
+from reg import sgd
+from reg import lasso
+from reg import elasticnet
+from reg import ridge
+from reg import lars
+from reg import omp
 
 def main(dataset):
     while True:
