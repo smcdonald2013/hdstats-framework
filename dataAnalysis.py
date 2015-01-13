@@ -1,17 +1,9 @@
 import sklearn # scikit-learn
 import numpy as np
-import ols
-import sgd
-import lda
 import pca
-import lasso
-import elasticnet
-import ridge
-import lars
-import omp
+from reg import ols, sgd, lasso, elasticnet, ridge, omp, lars
+from classification import lda, qda, logistic
 import clustering
-import logistic
-import qda
 
 def main(dataset):
     while True:
