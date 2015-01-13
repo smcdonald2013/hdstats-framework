@@ -1,0 +1,48 @@
+from sklearn.lda import LDA as skLDA
+import visualizations as viz
+import checks as c
+
+class CLASSIFIER:
+    """This is the base class for classification algorithms.
+
+    Methods:
+        __init__
+        fit_model
+        check_model
+        print_results
+        plot_results
+
+    Instance Variables:
+        self.data 
+        self.classes
+        self.classObj
+        self.classNames
+    """
+
+    def __init__(self, data, classes, classNames=False):
+        """Initializes the classifier. Accepts class names as optional argument"""
+        self.data = data
+        self.classes = classes
+        self.classObj = skLDA()
+        self.classNames = classNames
+
+    def fit_model(self):
+        """Fits the classifier using scikit-learn method."""
+        self.fitted_model = self.classObj.fit(self.data, self.classes)
+
+    def check_model(self):
+        """Base model check is just for mutlicollinearity."""
+        self.mcCheck = c.mcCheck(self.data)
+        self.mcCheck.check()
+
+    def print_results(self):
+        """Prints the fitted coefficients and the class means."""
+        print('\n Classifier Coefficients')
+        print(self.classObj.coef_)
+        print('\n Class Mean')
+        print(self.classObj.means_)
+
+    def plot_results(self):
+        """By default, we plot the first two variables colored by class."""
+        self.transData = self.fitted_model.transform(self.data)
+        viz.plot_clusters(self.transData[:,0],self.transData[:,1], self.classes).plot()
