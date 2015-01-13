@@ -4,23 +4,31 @@ import dataAnalysis
 import dataVisualization
 import numpy as np
 
-# Set printing options for numpy arrays
-np.set_printoptions(precision=3, suppress=True)
+"""@package hdstats-framework
+Introduction to package
 
-# Basic class to hold all datasets
+More detailed description
+
+"""
+
+
+## Basic class to hold all datasets
 class Dataset(object):
     def __init__(self, data=None, error=None, variableNameToNumber=None, variableNumberToName=None, independentVariable=np.NaN, dependentVariable=np.NaN):
-        self.data=data   # Numpy array containing full dataset
-        # Optional:
-        self.error=error # Numpy array containing errors for each data point
-        self.variableNameToNumber=variableNameToNumber # Dictonary mapping from variable names to column numbers 
-        self.variableNumberToName=variableNumberToName # Dictonary mapping from column numbers to variable names
-        self.independentVariable=independentVariable # Column number of independent variable
-        self.dependentVariable=dependentVariable # Column number of dependent variable(s)
+        self.data=data   ##!< Numpy array containing full dataset
+        ## Optional:
+        self.error=error ##!< Numpy array containing errors for each data point
+        self.variableNameToNumber=variableNameToNumber ##< Dictonary mapping from variable names to column numbers 
+        self.variableNumberToName=variableNumberToName ##< Dictonary mapping from column numbers to variable names
+        self.independentVariable=independentVariable ##< Column number of independent variable
+        self.dependentVariable=dependentVariable ##< Column number of dependent variable(s)
 
 
-# Create dataset object
+## Create dataset object
 dataset=Dataset()
+
+## Set global printing options for numpy arrays
+np.set_printoptions(precision=3, suppress=True)
 
 
 while True:
@@ -42,13 +50,13 @@ while True:
             if s=='':
                 pass
             elif (('=' in s) and not (('==' in s) or ('!=' in s) or ('>=' in s) or ('<=' in s))) or ('import' in s):
-                # Catch some common commands that can only be handled by exec()
+                ## Catch some common commands that can only be handled by exec()
                 try:
                     exec(s)
                 except Exception, e:
                     print 'Error: %s' % e
             else:
-                # Other statements can be evaluated, so we can print the results to screen
+                ## Other statements can be evaluated, so we can print the results to screen
                 try:
                     print(eval(s))
                 except Exception, e:
