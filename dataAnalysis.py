@@ -3,9 +3,8 @@ import numpy as np
 import dimensionalityReduction
 import clustering
 from reg import ols, sgd, lasso, elasticnet, ridge, lars, omp, glsar
+from reg import boxcox as bc
 from classification import lda, qda, logistic
-import statsmodels.api as sm
-import boxcox as bc
 
 def main(dataset):
     while True:
@@ -284,11 +283,11 @@ def classification(dataset):
 
 def regGuide(model):
     """Call the action functions, which consider the output of the checks and fit additional models as required. The order in which the action functions are called is important, as it is designed to fix more problematic assumption fails first. Return the adjusted model."""
-    NewModel = mcAction(model)
+    #NewModel = mcAction(model)
     NewModel = acAction(model)
-    NewModel = linAction(model)
-    NewModel = singAction(model)
-    NewModel = homoskeAction(model)
+    #NewModel = linAction(model)
+    #NewModel = singAction(model)
+    #NewModel = homoskeAction(model)
     return NewModel
 
 def mcAction(model):
