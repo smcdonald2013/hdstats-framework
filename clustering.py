@@ -92,7 +92,7 @@ class KMeans(clusterClass):
 
 
 
-class MiniBatchKMeans:
+class MiniBatchKMeans(clusterClass):
     """Derived class to implement Mini-Batch KMeans Clustering.
 
     A modification of standard KMeans clustering with better scalability
@@ -142,7 +142,7 @@ class MiniBatchKMeans:
         self.obj = cluster.MiniBatchKMeans(n_clusters=self.n_clusters, init=self.init, max_iter=self.max_iter, batch_size=self.batch_size, verbose=self.verbose, compute_labels=self.compute_labels, random_state=self.random_state, tol=self.tol, max_no_improvement=self.max_no_improvement, init_size=self.init_size, n_init=self.n_init, reassignment_ratio=self.reassignment_ratio) ##!< The MiniBatch KMeans clustering object from scikit-learn
 
 
-class MeanShift:
+class MeanShift(clusterClass):
     """Derived class to implement MeanShift clustering.
 
     Unlike KMeans-based and spectral clustering types, Mean-shift Clustering does not need
@@ -179,7 +179,7 @@ class MeanShift:
         self.obj = cluster.MeanShift(bandwidth=self.bandwidth, seeds=self.seeds, bin_seeding=self.bin_seeding, min_bin_freq=self.min_bin_freq, cluster_all=self.cluster_all) ##!< The MeanShift clustering object from scikit-learn
 
 
-class SpectralClustering:
+class SpectralClustering(clusterClass):
     """Derived class to implement Spectral Clustering.
  
     Spectral Clustering is a clustering technique that uses the eigenvalues of the similarity 
@@ -221,7 +221,7 @@ class SpectralClustering:
         pass
 
 
-class DBSCAN:
+class DBSCAN(clusterClass):
     """Derived class to implement DBSCAN clustering.
  
     DBSCAN (Density-Based Spatial Clustering of Applications with Noise) is a clustering 
