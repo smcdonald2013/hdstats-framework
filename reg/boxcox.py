@@ -23,13 +23,3 @@ class LINTRANS:
         self.opTrans = sc.stats.boxcox(x=self.independentVar, lmbda=self.lam[self.maxIndex])
         self.xlam = self.lam[self.maxIndex]
 
-class GLSAR:
-
-    def __init__(self, indepVar, depVar, coeff):
-        self.dependentVar = depVar
-        self.independentVar = indepVar
-        self.coeff = coeff
-        self.regObj = sm.regression.linear_model.GLSAR(self.dependentVar, self.independentVar, rho=coeff)
-
-    def fit(self):
-        self.model_fit = self.regObj.fit()
