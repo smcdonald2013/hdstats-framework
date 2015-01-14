@@ -1,11 +1,5 @@
 from sklearn import linear_model
-import statsmodels.api as sm
 import checks as c
-import boxcox as bc
-import lasso as lasso
-import elasticnet as elasticnet
-import ridge as ridge
-import numpy as np
 import visualizations as viz
 import regClass as rc
 
@@ -18,7 +12,6 @@ class OLS(rc.REG):
     check_model
     print_results -- inherits from regression base class
     plot_results
-    model_actions
 
     Instance Variables:
     self.regObj -- primary regression object, from scikit library
@@ -53,61 +46,3 @@ class OLS(rc.REG):
         """
         rc.REG.plot_results(self)
         viz.plot_qq(self.residuals).plot()
-
-    def model_actions(self):
-        self.acAction()
-        self.mcAction()
-        self.linAction()
-        self.highdimAction()
-        self.singAction()
-        self.homoskeAction()
-
-    def mcAction(self):
-        if self.mcCheck.conNum > 20:
-            print "Multicollinearity is a problem. Condition number of design matrix is  " , self.mcCheck.conNum
-            if self.sparse == True:
-                print "The underlying model is also sparse. Fitting elastic-net regression."
-                return elasticnet.ELASTICNET(self.independentVar, self.dependentVar, alpha=.5, l1_ratio=.5)
-                #Possibly PCA regression?
-            else:
-                print "The underlying model isn't sparse. Fitting ridge regression. "
-                return ridge.RIDGE(self.independentVar, self.dependentVar, alpha=1)
-        elif self.highdimCheck == True:
-            print "Multicollinearity is not an issue, but the data is high dimensional. Fitting lasso and orthogonal matching pursuit regression. "
-            return lasso.LASSO(self.independentVar, self.dependentVar)
-            #self.newObj2 = omp.OMP(self.independenVar, self.dependentVar)
-        else:
-            print "Multicollinearity is not an issue."
-
-    def acAction(self):
-        if self.acCheck.ljungbox[1][0] < .05:
-            print "Residuals are autocorrelated. Implementing GLSAR."
-            #Cochrane-orcutt would be the traditional response. Statsmodels implements GLSAR instead, which appears to be similar. 
-            #In the future, adjust this for more than the first lag. 
-            return sm.regression.linear_model.GLSAR(self.dependentVar, self.independentVar)
-        else:
-            print "Residuals appear to be uncorrelated."
-
-    def linAction(self):
-        #Transform the variables
-        if self.linCheck.hc[1] < .05:
-            print "Linear model is incorrect, transforming variables using box-cox transformation"
-            self.trans = np.empty([self.independentVar.shape[0],self.independentVar.shape[1]])
-            for i in range(self.independentVar.shape[1]):
-                self.linData = bc.LINTRANS(self.independentVar[:,i], self.dependentVar)
-                #In the future, this should probably be redone using the correlation between the residuals and the independent variables
-                self.linData.linearize()
-                self.trans[:,i] = self.linData.opTrans
-            return  OLS(self.trans, self.dependentVar)
-        else:
-            print "Linear model appears reasonable."
-
-    def singAction(self):
-        if self.singCheck == True:
-            print ("Singular data matrix. Inspect data and remove linearly dependent samples.")
-
-    def homoskeAction(self):
-        if self.homoskeCheck.bptest[1] < .05:
-            print "Evidence of heteroskedasticity. Use only robust standard errors."
-        else:
-            print "Heteroskedasticity does not appear to be a problem."
