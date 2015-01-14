@@ -186,7 +186,7 @@ class SpectralClustering(clusterClass):
     matrix of the dataset. It is considered particularly good at finding non-convex clusters.
         
     Variable descriptions below are those of using underlying scikit-learn clustering object.
-    For reference, the underlying scikit object (in MeanShift.obj) contains:
+    For reference, the underlying scikit object (in SpectralClustering.obj) contains:
 
     Attributes: 
         affinity_matrix_            (array-like, [n_clusters, n_features]) Affinity matrix used for clustering.
@@ -230,7 +230,7 @@ class DBSCAN(clusterClass):
     
             
     Variable descriptions below are those of using underlying scikit-learn clustering object.
-    For reference, the underlying scikit object (in MeanShift.obj) contains:
+    For reference, the underlying scikit object (in DBSCAN.obj) contains:
 
     Attributes: 
         affinity_matrix_            (array-like, [n_clusters, n_features]) Affinity matrix used for clustering.
