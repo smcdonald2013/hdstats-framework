@@ -2,10 +2,9 @@ import sklearn # scikit-learn
 import numpy as np
 import dimensionalityReduction
 import clustering
-from reg import ols, sgd, lasso, elasticnet, ridge, lars, omp, glsar
+from reg import ols, sgd, lasso, elasticnet, ridge, lars, omp, glsar, boxcox as bc
 from classification import lda, qda, logistic
 import statsmodels.api as sm
-import boxcox as bc
 
 def main(dataset):
     while True:
