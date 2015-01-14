@@ -14,7 +14,7 @@ def main(dataset):
         elif s=='1':
             dataset=regression(dataset)
         elif s=='2':
-            dataset=dimensionalityReduction(dataset)
+            dataset=dimensionalityReductionAnalysis(dataset)
         elif s=='3':
             dataset=clusteringAnalysis(dataset)
         elif s=='4':
@@ -91,7 +91,7 @@ def clusteringAnalysis(dataset):
     return dataset
 
 
-def dimensionalityReduction(dataset):
+def dimensionalityReductionAnalysis(dataset):
     s=raw_input('Select dimensionality reduction method:\n  1. Principal Component Analysis (PCA)\n- 2. Randomized PCA (faster)\n  3. Sparse PCA (finds sparse principal components)\n  4. Independent Component Analysis (ICA - components need not be orthogonal)\n  5. Isometric Mapping (Isomap)\n  6. Locally Linear Embedding\n  7. Spectral Embedding\n  8. Guide me\n')
 
     if s=='1':
