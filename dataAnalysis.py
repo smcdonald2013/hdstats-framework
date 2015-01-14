@@ -2,8 +2,10 @@ import sklearn # scikit-learn
 import numpy as np
 import pca
 import clustering
-from reg import ols, sgd, lasso, elasticnet, ridge, lars, omp
+from reg import ols, sgd, lasso, elasticnet, ridge, lars, omp, glsar
 from classification import lda, qda, logistic
+import statsmodels.api as sm
+import boxcox as bc
 
 def main(dataset):
     while True:
@@ -185,7 +187,7 @@ def dimensionalityReduction(dataset):
     return dataset
  
 def regression(dataset):
-    s=raw_input('Select regression technique:\n- 1. OLS\n  2. Lasso\n  3. Ridge\n  4. Elastic Net\n  5. Lars\n  6. OMP\n  0. Guide me\n')
+    s=raw_input('Select regression technique:\n- 1. OLS\n  2. Lasso\n  3. Ridge\n  4. Elastic Net\n  5. Lars\n  6. OMP\n  7. Guide me\n')
 
     if s=='1' or s=='': # default
         model=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #independent variable is assumed to be in the first column
@@ -230,29 +232,23 @@ def regression(dataset):
 
         model=omp.OMP(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
-    elif s=='0':
+    elif s=='7':
         sp = raw_input('Is the underlying model assumed to be sparse? (Default is no)\n  1. Yes\n- 0. No\n')
         if sp=='1':
             spVal = True
         else:
             spVal = False
-        if dataset.data.shape[0] < 100000:
-            print('\nRunning OLS Regression')
-            model = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=spVal) #independent variable is assumed to be in the first column
-            model.fit_model()
-            print('\nRegression summary', model.fitted_model.coef_)
-            print('\nPerforming assumption checks')
-            model.check_model()
-            print('\nTaking any necessary corrective actions')
-            model.mcAction()
-            model.acAction()
-            model.linAction()
-            model.singAction()
-            model.homoskeAction()
-        else:
-            print('\nDataset is very large, running SGD Regression')
-            model = sgd.SGD(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
-
+        print('\nRunning OLS Regression')
+        model = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=spVal) #independent variable is assumed to be in the first column
+        model.fit_model()
+        print('\nRegression summary')
+        model.print_results()
+        print('\nNecessary plots')
+        model.plot_results()
+        print('\nPerforming assumption checks')
+        model.check_model()
+        print('\nTaking any necessary corrective actions')
+        model = regGuide(model)
 
     try: model.fit_model()
     except Exception, e: print 'Error fitting model: %s' % e
@@ -285,3 +281,79 @@ def classification(dataset):
     except Exception, e: print 'Error: %s' % e
 
     return dataset
+
+def regGuide(model):
+    """Call the action functions, which consider the output of the checks and fit additional models as required. The order in which the action functions are called is important, as it is designed to fix more problematic assumption fails first. Return the adjusted model."""
+    NewModel = mcAction(model)
+    NewModel = acAction(model)
+    NewModel = linAction(model)
+    NewModel = singAction(model)
+    NewModel = homoskeAction(model)
+    return NewModel
+
+def mcAction(model):
+    """This function takes the appropriate action given the presence of multicollinearity and the sparsity of the data.
+
+    There are 4 possible situations:
+    Multicollinearity exists, and the data are sparse-- ElasticNet
+    Multicollinearity exists, the data are not sparse-- Ridge
+    Multicollinearity does not exist, but the data are sparse--Lasso
+    Multicollinearity does not exist, and the data aren't sparse--keep OLS
+    """
+    if model.mcCheck.conNum > 20:
+        print('\nMulticollinearity is a problem. Condition number of design matrix is ' , self.mcCheck.conNum)
+        if model.sparse == True:
+            print('\nThe underlying model is also sparse. Fitting elastic-net regression.')
+            return elasticnet.ELASTICNET(model.independentVar, model.dependentVar, alpha=.5, l1_ratio=.5)
+        else:
+            print('\nThe underlying model is not sparse. Fitting ridge regression.')
+            return ridge.RIDGE(model.independentVar, model.dependentVar, alpha=1)
+    elif model.highdimCheck == True:
+        print('\nMulticollinearity is not an issue, but the data is high dimensional. Fitting lasso regression.')
+        return lasso.LASSO(model.independentVar, model.dependentVar)
+    else:
+        return model
+
+def acAction(model):
+    """This method takes a model and runs a GLSAR if the residuals are autocorrelated.
+
+       Note that Cochrane-orcutt would be the traditional procedure here, however Statsmodels does not implement it. GLSAR appears to be similar"""
+    if model.acCheck.ljungbox[1][0] < .05:
+        print('\nResiduals are autocorrelated. Implementing GLSAR.')
+        return glsar.GLSAR(model.dependentVar, model.independentVar)
+    else:
+        print('\nResiduals appear to be uncorrelated.')
+        return model
+
+def linAction(model):
+    """If the model failed the linearity check, this method transforms the variables using a box-cox transformation.
+
+    Note that the method currently uses the correlation between the independent and dependent variables, but a preferred method would use the residuals and independent variables instead.
+    """
+    if model.linCheck.hc[1] < .05:
+        print('Linear model is incorrect, transforming variables using box-cox transformation')
+        trans = np.empty([model.independentVar.shape[0],model.independentVar.shape[1]])
+        for i in range(model.independentVar.shape[1]):
+            linData = bc.LINTRANS(model.independentVar[:,i], model.dependentVar)
+            """In the future, this should probably be redone using the correlation between the residuals and the independent variables."""
+            linData.linearize()
+            trans[:,i] = linData.opTrans
+        return  ols.OLS(trans, model.dependentVar)
+    else:
+        print('\nLinear model appears reasonable.')
+        return model
+
+def singAction(model):
+    """If the data matrix is singular, this throws a warning, but no automatic procedure is implemented to make the matrix singular, as it is presumed the user will want to inspect the matrix to determine the best approach."""
+    if model.singCheck == True:
+        print('\nSingular data matrix. Inspect data and remove linearly dependent samples.')
+    return model
+
+def homoskeAction(model):
+    """If there is evidence of heteroskedasticity, there are procedures that can address it, however they tend to require knowledge about the underlying process that is rarely satisfied in practice. Instead, we recommend using robust standard errors, as implemented in this function."""  
+    if model.homoskeCheck.bptest[1] < .05:
+        print('\nEvidence of heteroskedasticity. Use only robust standard errors.')
+    else:
+        print('\nHeteroskedasticity does not appear to be a problem.')
+
+    return model
