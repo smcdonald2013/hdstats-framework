@@ -4,12 +4,17 @@ import dataAnalysis
 import dataVisualization
 import numpy as np
 
-"""@package hdstats-framework
-Introduction to package
-
-More detailed description
-
-"""
+##@mainpage hdstats-framework
+#@brief Framework for import, cleaning, analysis, and visualization of high-dimensional data.
+#
+#The main user interface is a command-line based textual menu interface, with the 
+#addition of a simple built-in python interpreter to allow the user to access and 
+#interact with underlying classes and variables directly for flexibility.
+#
+#The code is divided into four main files, containing UI and analysis functions: 
+#dataImport.py, dataCleaning.py, dataAnalysis.py, and dataVisualization.py
+#as well, as supporting files for analysis classes and checks.
+#
 
 
 ## Basic class to hold all datasets

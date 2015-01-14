@@ -1,0 +1,4 @@
+PROJECT_NAME        = hdstats-framework
+PROJECT_NUMBER      = 1.0
+
+FILTER_PATTERNS      = *.py=py_filter
