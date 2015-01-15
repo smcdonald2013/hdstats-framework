@@ -4,7 +4,7 @@ def main(dataset):
     """Basic UI and procedures for data import menu"""
 
     while True:
-        s=raw_input('Select data cleaning method:\n  1. Remove outliers by standard deviations from the mean\n  2. Remove outliers by percentile\n  3. Replace NaNs\n  4. De-mean dataset\n  5. Normalize variance\n  6. Bootstrap resample dataset\n- 0. Exit\n')
+        s=raw_input('Select data cleaning method:\n  1. Remove outliers by standard deviations from the mean\n  2. Remove outliers by percentile\n  3. Replace NaNs\n  4. De-mean dataset\n  5. Normalize variance\n  6. Bootstrap resample dataset\n- 0. Exit\n') # Dash indicates default option
         if s=='0' or s=='': # default
             ## Exit the data cleaning menu
             break
@@ -27,6 +27,7 @@ def main(dataset):
             ## Expand dataset by bootstrap resampling
             dataset=bootstrap(dataset)
         else:
+            ## Cycle through menu again in case of unrecognized input
             print 'Input not recognized\n'
     return dataset
 
