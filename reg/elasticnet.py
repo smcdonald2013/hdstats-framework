@@ -1,43 +1,33 @@
+"""@package docstring
+The elastic net module, which combines l1 and l2 penalties."""
 from sklearn import linear_model
-import statsmodels.api as sm
 import checks as c
 import visualizations as viz
-import numpy as np
 import regClass as rc
 
 class ELASTICNET(rc.REG):
-    """Object which performs elastic-net regression, checks assumptions, and makes plots
-
-    Methods:
-    __init__
-    fit_model
-    CV_model
-    check_model -- Inherits from regression base class
-    print_results
-    plot_results
-
-    Instance Variables:
-    self.regObj -- primary regression object, from scikit library
-    self.residuals -- vector, 1xnObservations, containing residuals of fit
-    """
+    """Object which performs elastic-net regression, checks assumptions, and makes plots."""
 
     def __init__(self, indepVar, depVar,alpha=1, l1_ratio=.5):
-        """Constructs class object, including variable setting and elastic-net object creation
+        """Elastic net constructor
 
-        Instance Variables:
-        self.independentVar -- Inherited from regression baseclass
-        self.dependentVar -- Inherited from regression baseclass
-        self.alpha
-        self.regObj
+        @param indepVar Array of independent variables
+        @param depVar Vector of dependent variable
+        @param alpha Regularization parameter (Defaults to 1)
+        @param l1_ratio Ratio of l1 to l2 penalties
         """
-        rc.REG.__init(self, indepVar, depVar)
+        rc.REG.__init__(self, indepVar, depVar)
+        ## Ratio of l1 to l2 penalties
         self.l1_ratio = l1_ratio
+        ## Regularization parameter
         self.alpha = alpha
+        ## Elastic-Net Object (from Scikit-learn)
         self.regObj = linear_model.ElasticNet(alpha=alpha, l1_ratio=self.l1_ratio, copy_X=False)
 
     def fit_model(self):
-        """Fit the elastic-net model. Inherits from the regression baseclass, and adds sparsity variable"""
+        """Fit the elastic-net model, add sparsity member variable."""
         rc.REG.fit_model(self)
+        ## Fraction of nonzero coefficients
         self.sparsity = float(np.count_nonzero(self.regObj.coef_))/self.regObj.coef_.shape[0]
 
     def CV_model(self):
@@ -47,22 +37,15 @@ class ELASTICNET(rc.REG):
         self.regObj = linear_model.ElasticNet(alpha=self.regObj.alpha_, l1_ratio=self.regObj.l1_ratio_, copy_X=False)
 
     def print_results(self):
-        """Prints useful information for a elastic-net regression.
-
-        Prints:
-        Coefficients -- Inherited from regression base class
-        R-Squared -- Inherited from regression base class
-        Sparsity -- The fraction of nonzero coefficients
-        """
+        """Prints useful information for a elastic-net regression."""
         rc.REG.print_results(self)
         print('\n Sparsity of the solution is: ')
         print('%.3f' % (self.sparsity))
 
     def plot_results(self):
-        """Create the base regression plots as well as a regularization path plot
-        """
+        """Create the base regression plots as well as a regularization path plot."""
         rc.REG.plot_results(self)
-        self.path = linear_model.enet_path(self.independentVar, self.dependentVar, l1_ratio=self.l1_ratio,return_models=False, fit_intercept=False)
-        self.alphas = self.path[0]
-        self.coefs = (self.path[1]).T
-        viz.plot_regPath(self.alphas, self.coefs).plot()
+        path = linear_model.enet_path(self.independentVar, self.dependentVar, l1_ratio=self.l1_ratio,return_models=False, fit_intercept=False)
+        alphas = path[0] #Vector of alphas
+        coefs = (path[1]).T #Array of coefficients for each alpha
+        viz.plot_regPath(alphas, coefs).plot()

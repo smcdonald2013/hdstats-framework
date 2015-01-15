@@ -5,24 +5,23 @@ import visualizations as viz
 import classifierBase as cb
 
 class QDA(cb.CLASSIFIER):
-    """Classifier using quadratic discriminant analysis, with associated checks and plots.
-
-    Methods:
-        __init__ -- Inherited from base classification
-        fit_model -- Inherited from base classification
-        check_model -- Adds multivariate normality check
-        print_results -- Overwrites base classification
-        plot_results -- Overwrites base classification 
-    """
+    """Classifier using quadratic discriminant analysis, with associated checks and plots."""
 
     def __init__(self, data, classes, classNames=False):
-        """Uses base initilization, but with QDA object."""
+        """Uses base initilization, but with QDA object.
+        
+        @param data Data Array
+        @param classes Vector of class labels
+        @param classNames Vector of class names
+        """
         cb.CLASSIFIER.__init__(self, data, classes, classNames)
+        ## QDA Class Object (from Scikit-learn)
         self.classObj = skQDA()
 
     def check_model(self):
         """Inherits multicollinearity check from base, and adds multivariate normal check. """
         cb.CLASSIFIER.check_model(self)
+        ## Multivariate normal check class object
         self.mvnCheck = c.mvnCheck(self.data)
         self.mvnCheck.check()
 

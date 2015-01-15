@@ -1,38 +1,24 @@
+"""@package docstring
+The elastic net module, which combines l1 and l2 penalties."""
 from sklearn import linear_model
-import statsmodels.api as sm
 import checks as c
 import visualizations as viz
 import regClass as rc
 
 class OMP(rc.REG):
-    """Object which performs orthogonal matching pursuit regression, checks assumptions, and makes plots
-
-    Methods:
-    __init__
-    fit_model -- Inherits from regression base class
-    check_model -- Inherits from regression base class
-    print_results -- Inherits from regression base class
-    plot_results
-
-    Instance Variables:
-    self.regObj -- primary regression object, from scikit library
-    self.residuals -- vector, 1xnObservations, containing residuals of fit
-    """
+    """Object which performs orthogonal matching pursuit regression, checks assumptions, and makes plots."""
 
     def __init__(self, indepVar, depVar):
-        """Constructs class object, including variable setting and lasso object creation
+        """OMP constructor
 
-        Instance Variables:
-        self.independentVar -- Inherited from regression baseclass
-        self.dependentVar -- Inherited from regression baseclass
-        self.alpha
-        self.regObj
+        @param indepVar Array of independent variables
+        @param depVar Vector of dependent variable
         """
         rc.REG.__init__(self, indepVar, depVar)
+        ## OMP Object (from Scikit-learn)
         self.regObj = linear_model.OrthogonalMatchingPursuit()
 
     def plot_results(self):
-        """Create the base regression plots as well as a regularization path plot
-        """
+        """Create the base regression plots as well as a qq-plot"""
         rc.REG.plot_results(self)
         viz.plot_qq(self.residuals).plot()

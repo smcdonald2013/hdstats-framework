@@ -1,27 +1,21 @@
+"""@package LARS
+The elastic net module, which performs a box-cox transformation."""
 from sklearn import linear_model
-import statsmodels.api as sm
 import visualizations as viz
 import checks as c
 import regClass as rc
 
 class LARS(rc.REG):
-    """Object which performs LARS, checks assumptions, and makes plots
+    """Object which performs LARS, checks assumptions, and makes plots."""
 
-    Methods:
-    __init__
-    fit_model -- Inherits from regression base class
-    CV_model
-    check_model -- Inherits from regression base class
-    print_results -- Inherits from regression base class
-    plot_results -- Inherits from regression base class
+    def __init__(self, indepVar, depVar):
+        """LARS constructor
 
-    Instance Variables:
-    self.regObj -- primary regression object, from scikit library
-    self.residuals -- vector, 1xnObservations, containing residuals of fit
-    """
-
-    def __init__(self, indepVar, depVar,alpha, l1_ratio):
+        @param indepVar Array of independent variables
+        @param depVar vector of dependent varible
+        """
         rc.REG.__init__(self, indepVar, depVar)
+        ## LARS Object (from Scikit-learn)
         self.regObj = linear_model.Lars()
 
     def CV_model(self):

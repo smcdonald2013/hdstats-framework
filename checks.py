@@ -21,7 +21,7 @@ class check:
     
     def __init__(self, data):
         """Constructor, should overwrite if more than one parameter is necessary."""
-        ##Data matrix/vector, depending on the check
+        ## Data matrix/vector, depending on the check
         self.data = data 
 
     def check(self):
@@ -34,11 +34,11 @@ class mcCheck(check):
     def check(self):
         """Finds condition number of data matrix."""
 
-        ##Condition number of matrix
+        ## Condition number of matrix
         self.conNum = np.linalg.cond(self.data)
         if self.conNum > 20:
             print('\nMulticollinearity is a problem')
-        else
+        else:
             print('\nThere does not appear to be an issue with multicollinearity.')
 
 class acCheck(check):
@@ -53,7 +53,7 @@ class acCheck(check):
         self.ljungbox = sm.stats.diagnostic.acorr_ljungbox(self.data, lags=2)
         if self.ljungbox[1][0] < .05:
             print('\nResiduals are autocorrelated.')
-        else
+        else:
             print('\nThere does not appear to be a problem with autocorrelation of residuals.')
 
 class linCheck(check):

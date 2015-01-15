@@ -217,15 +217,8 @@ def regression(dataset):
         model=elasticnet.ELASTICNET(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
 
     elif s=='5':
-        s1=raw_input('Value of alpha parameter? (default: 1)\n')
-        try: alpha=int(s1)
-        except: alpha=1
 
-        s1=raw_input('Ratio of l1 penalty relative to l2? (default: .5)\n')
-        try: l1_ratio = int(s1)
-        except: l1_ratio=.5
-
-        model=lars.LARS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
+        model=lars.LARS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
     elif s=='6':
 
@@ -254,9 +247,9 @@ def regression(dataset):
     try: model.print_results()
     except Exception, e: print 'Error: %s' % e
     try: model.check_model()
-    except Exception, e: print 'Error: %s' %e
+    except Exception, e: print 'Error: %s' % e
     try: model.plot_results()
-    except Exception, e: print 'Error: %s' %e
+    except Exception, e: print 'Error: %s' % e
 
     return dataset
 
@@ -284,8 +277,8 @@ def classification(dataset):
 def regGuide(model):
     """Call the action functions, which consider the output of the checks and fit additional models as required. The order in which the action functions are called is important, as it is designed to fix more problematic assumption fails first. Return the adjusted model."""
     #NewModel = mcAction(model)
-    NewModel = acAction(model)
-    #NewModel = linAction(model)
+    #NewModel = acAction(model)
+    NewModel = linAction(model)
     #NewModel = singAction(model)
     #NewModel = homoskeAction(model)
     return NewModel

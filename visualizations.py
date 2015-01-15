@@ -79,21 +79,6 @@ class plot_qq:
         sm.qqplot(self.data, fit=True, line='s')
         plt.show()
 
-class plot_comps:
-    #2-D plot of one component vs another, with classes 
-    def __init__(self,comp1, comp2, compNums, classes=False, classNames=False):
-        self.comp1 = comp1
-        self.comp2 = comp2
-        self.compNums = compNums
-        self.classes = classes
-        self.classNames = classNames
-
-    def plot(self):
-        for i, j, class_name in zip('rgb', [1,2,3], self.classNames):
-            plt.scatter(self.comp1[self.classes == j], self.comp2[self.classes == j], c=i, label=class_name)
-        plt.legend()
-        plt.show()
-
 class crossplot_components:
     #Cross-plot the two first principal components from PCA or similar 
     def __init__(self, c1, c2):
