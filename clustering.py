@@ -13,8 +13,7 @@ class clusterClass:
         # May contain numerous variables for a given analysis method, but will always include:
         self.data ##!< Raw 2-dimensional data matrix from dataset.data
         self.dataTransformed ##<! Primary output of clustering analysis: the index of the closest cluster
-        self.obj ##<! The classification object for a given method from scikit-learn
-        
+        self.obj ##<! The classification object for a given method from scikit-learn   
 
     def fit_model(self):
         """Run the cluster analysis method, and return the list of closest cluster indices.
@@ -40,7 +39,7 @@ class clusterClass:
         viz.plot_clusters(self.data[:,0], self.data[:,1], self.dataTransformed).plot()
 
 
-# 
+
 class KMeans(clusterClass):
     """Derived class to implement KMeans Clustering.
 
@@ -118,6 +117,9 @@ class MiniBatchKMeans(clusterClass):
     """
 
     def __init__(self, data, n_clusters=8, init='k-means++', max_iter=100, batch_size=100, verbose=0, compute_labels=True, random_state=None, tol=0.0, max_no_improvement=10, init_size=None, n_init=3, reassignment_ratio=0.01):
+        """ Create the MiniBatchKMeans Clustering object.
+        Initialize all provided variables and specify all default options.
+        """
         self.n_clusters=n_clusters          ##!< The number of clusters to form as well as the number of centroids to generate (int, default: 8). 
         self.max_iter=max_iter              ##!< Maximum number of iterations of the k-means algorithm for a single run (int, default: 100).
         self.init=init                      ##!< Method for initialization. Options: 'kmeans++', 'random', or ndarray (default 'k-means++')
@@ -168,6 +170,9 @@ class MeanShift(clusterClass):
     """
 
     def __init__(self, data, bandwidth=None, seeds=None, bin_seeding=False, min_bin_freq=1, cluster_all=True):
+        """ Create the MeanShift Clustering object.
+        Initialize all provided variables and specify all default options.
+        """
         self.bandwidth=bandwidth        ##!< Bandwidth used in the RBF kernel (float, default: None). If None, estimated by sklearn.cluster.estimate_bandwitdth
         self.seeds=seeds                ##!< Seeds used to initialize kernels (array, default: None). If None, calculated by sklearn.clustering.get_bin_seeds 
         self.bin_seeding=bin_seeding    ##!< Seed on a grid scaled by bandwidth (boolean, default: False).
@@ -200,6 +205,9 @@ class SpectralClustering(clusterClass):
     """
 
     def __init__(self, data, n_clusters=8, eigen_solver=None, random_state=None, n_init=10, gamma=1.0, affinity='rbf', n_neighbors=10, eigen_tol=0.0, assign_labels='kmeans', degree=3, coef0=1, kernel_params=None):
+        """ Create the Spectral Clustering object.
+        Initialize all provided variables and specify all default options.
+        """
         self.n_clusters=n_clusters          ##!< The number of clusters to form as well as the number of centroids to generate (int, default: 8). 
         self.eigen_solver=eigen_solver      ##!< The eigenvalue decomposition strategy to use. Options: None, 'arpack', 'lobpcg', and 'amg' (default: None). AMG requires pyamg.
         self.random_state=random_state      ##!< RNG seed. Used for AMG method and for K-Means initialization
@@ -243,6 +251,9 @@ class DBSCAN(clusterClass):
         set_params(**params)        Set the parameters of this estimator.
     """
     def __init__(self, data, eps=0.5, min_samples=5, metric='euclidean', algorithm='auto', leaf_size=30, p=None, random_state=None):
+        """ Create the DBSCAN Clustering object.
+        Initialize all provided variables and specify all default options.
+        """
         self.eps=eps                        ##!< The maximum distance between two samples for them to be considered as in the same neighborhood (float, default: 0.5).
         self.min_samples=min_samples        ##!< The number of samples in a neighborhood for a point to be considered as a core point (int, default: 5).
         self.metric=metric                  ##!< String or callable. Must be one of the options allowed by sklearn.metrics.pairwise.calculate_distance for its metric parameter.

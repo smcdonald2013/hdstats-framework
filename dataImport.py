@@ -2,17 +2,19 @@ import numpy as np
 
 
 def main(dataset):
+    """Basic UI and procedures for data import menu"""
 
-    # Import data
     while True:
         s=raw_input('Select:\n  1. Import data array\n  2. Import variable names\t\t\t(optional)\n  3. Set uncertainty array\t\t\t(optional)\n  4. Assign independent variable\t\t(optional)\n  5. Assign dependent variable\t\t\t(optional)\n- 0. Exit\n')
         if s=='0' or s=='': # default 
+            ## Exit the import menu
             break 
         elif s=='1':
+            ## Import data array
             dataset.data=getArray()
             dataset.error=None # Importing a new dataset resets uncertainties
         elif s=='2': 
-            # Make dictionaries mapping from variable names to column numbers, and vice versa
+            ## Make dictionaries mapping from variable names to column numbers, and vice versa (allowing for reference between names and column numbers)
             filename=raw_input('Name of delimited ASCII file containing variable names?\n')
             fp=open(filename)
             firstline=fp.readline()
@@ -23,7 +25,7 @@ def main(dataset):
             dataset.variableNumberToName={y: x for x, y in dataset.variableNameToNumber.items()}
             fp.close()
         elif s=='3':
-            # Import uncertainty array
+            ## Import uncertainty array (optional, used for bootstrap resampling)
             if dataset.data==None:
                 print 'Error: must import data first'
             else:
@@ -41,7 +43,7 @@ def main(dataset):
                     print 'Assumed 2-sigma, same dimensions as data array\n'
                     dataset.error = getArray()
         elif s=='4':
-            # Assign independent Variable
+            ## Assign independent Variable (optional)
             n=None
             s=raw_input('Enter column number of independent variable (zero-indexed)\n')
             try: 
@@ -51,22 +53,25 @@ def main(dataset):
                 n=np.NaN
             dataset.independentVariable=n
         elif s=='4':
-            # Assign dependent Variable
+            ## Assign dependent Variable
             n=None
-            s=raw_input('Enter column number of independent variable (zero-indexed)\n')
+            s=raw_input('Enter column number of dependent variable (zero-indexed)\n')
             try:
                 n=int(s)
             except: 
                 print 'Input not an interger. Set to NaN'
                 n=np.NaN
             dataset.dependentVariable=n
+        else:
+            print 'Input not recognized\n'
 
     return dataset
 
 
 
 def getArray():
-    # Import numeric array
+    ## Get numeric array
+
     data=None
     while data==None:
         s=raw_input('Select file type to import numeric array:\n- 1. Delimited ASCII (e.g. .csv)\n  2. Binary\n')
@@ -88,6 +93,8 @@ def getArray():
 
 
 def delimited():
+    ## Import delimited array
+
     filename=raw_input('Name of delimited file?\n')
     delim=raw_input('Delimiter?\n')
     data=None
@@ -96,6 +103,8 @@ def delimited():
     return data
 
 def binary():
+    ## Import binary array
+
     filename=raw_input('Name of binary file?\n')
     datatype=raw_input('Data type? (e.g. float)\n')
     data=None

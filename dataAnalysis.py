@@ -7,24 +7,34 @@ from reg import boxcox as bc
 from classification import lda, qda, logistic
 
 def main(dataset):
+    """Basic UI and procedures for data import menu"""
+    
     while True:
         s=raw_input('Select data analysis task:\n  1. Regression\n  2. Dimensionality reduction\n  3. Clustering\n  4. Classification\n- 0. Exit\n')
         if s=='0' or s=='': # default
+            ## Exit the analysis menu
             break
         elif s=='1':
+            ## Enter regression submenu
             dataset=regression(dataset)
         elif s=='2':
+            ## Enter dimensionality reduction submenu
             dataset=dimensionalityReductionAnalysis(dataset)
         elif s=='3':
+            ## Enter clustering submenu
             dataset=clusteringAnalysis(dataset)
         elif s=='4':
+            ## Enter classification submenu
             dataset=classification(dataset)
         else:
+            ## Cycle through menu again in case of unrecognized input
             print 'Input not recognized\n'
     return dataset
 
 
 def clusteringAnalysis(dataset):
+    ## Clustering analysis submenu
+
     s=raw_input('Select clustering method:\n  1. KMeans Clustering \n- 2. MiniBatch KMeans Clustering\n  3. MeanShift\n  4. Spectral Clustering\n  5. DBSCAN (Density-Based Spatial Clustering of Applications with Noise)\n  6. Guide me\n')
 
     if s=='1':
@@ -86,12 +96,15 @@ def clusteringAnalysis(dataset):
     except Exception, e: print 'Error: %s' % e
     try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
-
-
+    
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
 
 
 def dimensionalityReductionAnalysis(dataset):
+    ## Dimensionality reduction submenu
+
     s=raw_input('Select dimensionality reduction method:\n  1. Principal Component Analysis (PCA)\n- 2. Randomized PCA (faster)\n  3. Sparse PCA (finds sparse principal components)\n  4. Independent Component Analysis (ICA - components need not be orthogonal)\n  5. Isometric Mapping (Isomap)\n  6. Locally Linear Embedding\n  7. Spectral Embedding\n  8. Guide me\n')
 
     if s=='1':
@@ -183,9 +196,13 @@ def dimensionalityReductionAnalysis(dataset):
     if s=='1':
         dataset.data = model.dataTransformed
     
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
  
 def regression(dataset):
+    ## Regression submenu
+
     s=raw_input('Select regression technique:\n- 1. OLS\n  2. Lasso\n  3. Ridge\n  4. Elastic Net\n  5. Lars\n  6. OMP\n  7. Guide me\n')
 
     if s=='1' or s=='': # default
@@ -251,9 +268,13 @@ def regression(dataset):
     try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
 
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
 
 def classification(dataset):
+    # Classification submenu
+
     s=raw_input('Select classification technique:\n- 1. Logistic Regression\n  2. LDA\n  3. QDA\n')
 
     if s=='1' or s=='': # default
@@ -272,7 +293,10 @@ def classification(dataset):
     try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
 
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
+
 
 def regGuide(model):
     """Call the action functions, which consider the output of the checks and fit additional models as required. The order in which the action functions are called is important, as it is designed to fix more problematic assumption fails first. Return the adjusted model."""
