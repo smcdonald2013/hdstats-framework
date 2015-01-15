@@ -71,6 +71,7 @@ def main(dataset):
 
 def getArray():
     ## Get numeric array
+
     data=None
     while data==None:
         s=raw_input('Select file type to import numeric array:\n- 1. Delimited ASCII (e.g. .csv)\n  2. Binary\n')
@@ -81,7 +82,7 @@ def getArray():
         else:
             print 'Input not recognized\n'
 
-    ## Store variables in columns by default
+    # Store variables in columns by default
     variablesAsColumns=raw_input('Are variables stored as:\n  0. rows\n- 1. columns\n')
     if variablesAsColumns=='0':
         data=data.transpose()
@@ -93,6 +94,7 @@ def getArray():
 
 def delimited():
     ## Import delimited array
+
     filename=raw_input('Name of delimited file?\n')
     delim=raw_input('Delimiter?\n')
     data=None
@@ -102,6 +104,7 @@ def delimited():
 
 def binary():
     ## Import binary array
+
     filename=raw_input('Name of binary file?\n')
     datatype=raw_input('Data type? (e.g. float)\n')
     data=None
