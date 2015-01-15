@@ -206,9 +206,11 @@ def regression(dataset):
     s=raw_input('Select regression technique:\n- 1. OLS\n  2. Lasso\n  3. Ridge\n  4. Elastic Net\n  5. Lars\n  6. OMP\n  7. Guide me\n')
 
     if s=='1' or s=='': # default
-        model=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #independent variable is assumed to be in the first column
+        """OLS model"""
+        model=ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) 
 
     elif s=='2':
+        """Lasso model"""
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
@@ -216,6 +218,7 @@ def regression(dataset):
         model=lasso.LASSO(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
 
     elif s=='3':
+        """Ridge model"""
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
@@ -223,6 +226,7 @@ def regression(dataset):
         model=ridge.RIDGE(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha)
 
     elif s=='4':
+        """Elastic-net model"""
         s1=raw_input('Value of alpha parameter? (default: 1)\n')
         try: alpha=int(s1)
         except: alpha=1
@@ -234,11 +238,11 @@ def regression(dataset):
         model=elasticnet.ELASTICNET(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], alpha=alpha, l1_ratio=l1_ratio)
 
     elif s=='5':
-
+        """LARS Model"""
         model=lars.LARS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
     elif s=='6':
-
+        """OMP Model"""
         model=omp.OMP(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
     elif s=='7':
@@ -248,7 +252,7 @@ def regression(dataset):
         else:
             spVal = False
         print('\nRunning OLS Regression')
-        model = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=spVal) #independent variable is assumed to be in the first column
+        model = ols.OLS(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0], sparse=spVal)
         model.fit_model()
         print('\nRegression summary')
         model.print_results()
@@ -278,12 +282,15 @@ def classification(dataset):
     s=raw_input('Select classification technique:\n- 1. Logistic Regression\n  2. LDA\n  3. QDA\n')
 
     if s=='1' or s=='': # default
-        model=logistic.LOGISTIC(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0]) #class labels are assumed to be in the first column
+        """Perform logisitic regression. """
+        model=logistic.LOGISTIC(dataset.data[:,1:dataset.data.shape[1]],dataset.data[:,0])
 
     elif s=='2':
+        """LDA Classification."""
         model=lda.LDA(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
 
     elif s=='3':
+        """QDA Classification. """
         model=qda.QDA(dataset.data[:,1:dataset.data.shape[1]], dataset.data[:,0])
 
     try: model.fit_model()
@@ -300,11 +307,11 @@ def classification(dataset):
 
 def regGuide(model):
     """Call the action functions, which consider the output of the checks and fit additional models as required. The order in which the action functions are called is important, as it is designed to fix more problematic assumption fails first. Return the adjusted model."""
-    #NewModel = mcAction(model)
-    #NewModel = acAction(model)
+    NewModel = mcAction(model)
+    NewModel = acAction(model)
     NewModel = linAction(model)
-    #NewModel = singAction(model)
-    #NewModel = homoskeAction(model)
+    NewModel = singAction(model)
+    NewModel = homoskeAction(model)
     return NewModel
 
 def mcAction(model):
