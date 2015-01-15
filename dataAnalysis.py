@@ -86,8 +86,9 @@ def clusteringAnalysis(dataset):
     except Exception, e: print 'Error: %s' % e
     try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
-
-
+    
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
 
 
@@ -183,6 +184,8 @@ def dimensionalityReductionAnalysis(dataset):
     if s=='1':
         dataset.data = model.dataTransformed
     
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
  
 def regression(dataset):
@@ -258,6 +261,8 @@ def regression(dataset):
     try: model.plot_results()
     except Exception, e: print 'Error: %s' %e
 
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
 
 def classification(dataset):
@@ -279,7 +284,10 @@ def classification(dataset):
     try: model.plot_results()
     except Exception, e: print 'Error: %s' % e
 
+    # Return dataset and last-used model to analysis menu
+    dataset.model = model 
     return dataset
+
 
 def regGuide(model):
     """Call the action functions, which consider the output of the checks and fit additional models as required. The order in which the action functions are called is important, as it is designed to fix more problematic assumption fails first. Return the adjusted model."""
