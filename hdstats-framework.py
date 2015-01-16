@@ -58,13 +58,22 @@ while True:
         dataset=dataImport.main(dataset)
     elif s=='2':
         ## Enter data cleaning menu
-        dataset=dataCleaning.main(dataset)
+        if dataset.data==None: 
+            print 'Must first import dataset\n'
+        else: 
+            dataset=dataCleaning.main(dataset)
     elif s=='3':
         ## Enter data analysis menu
-        dataset=dataAnalysis.main(dataset)
+        if dataset.data==None: 
+            print 'Must first import dataset\n'
+        else: 
+            dataset=dataAnalysis.main(dataset)
     elif s=='4':
-        ## Enter data visualization meu
-        dataVisualization.main(dataset)
+        ## Enter data visualization menu
+        if dataset.data==None: 
+            print 'Must first import dataset\n'
+        else: 
+            dataVisualization.main(dataset)
     elif s=='5':
         ## Enter built-in interpreter mode
 
