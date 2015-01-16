@@ -1,5 +1,4 @@
-"""@package LARS
-The elastic net module, which performs a box-cox transformation."""
+"""The elastic net module, which performs a box-cox transformation."""
 from sklearn import linear_model
 import visualizations as viz
 import checks as c

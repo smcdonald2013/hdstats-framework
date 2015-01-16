@@ -1,5 +1,4 @@
-"""@package docstring
-The checks module, which contains a variety of statistical tests.
+"""The checks module, which contains a variety of statistical tests.
 
 This is the location of all of the checks/tests used in the project. 
 The base check class does little beyond provide an outline that should 
