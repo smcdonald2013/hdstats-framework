@@ -1,0 +1,38 @@
+from sklearn.qda import QDA as skQDA
+import checks as c
+import numpy as np
+import visualizations as viz
+import classifierBase as cb
+
+class QDA(cb.CLASSIFIER):
+    """Classifier using quadratic discriminant analysis, with associated checks and plots.
+
+    Methods:
+        __init__ -- Inherited from base classification
+        fit_model -- Inherited from base classification
+        check_model -- Adds multivariate normality check
+        print_results -- Overwrites base classification
+        plot_results -- Overwrites base classification 
+    """
+
+    def __init__(self, data, classes, classNames=False):
+        """Uses base initilization, but with QDA object."""
+        cb.CLASSIFIER.__init__(self, data, classes, classNames)
+        self.classObj = skQDA()
+
+    def check_model(self):
+        """Inherits multicollinearity check from base, and adds multivariate normal check. """
+        cb.CLASSIFIER.check_model(self)
+        self.mvnCheck = c.mvnCheck(self.data)
+        self.mvnCheck.check()
+
+    def print_results(self):
+        """Overwrites base classifier because QDA does not have coefficient estimates."""
+        print('\n Class Means')
+        print(self.classObj.means_)
+        print('\n Class Covariances')
+        print(self.classObj.covariance_)
+
+    def plot_results(self):
+        """Overwrites base plots, because of odd QDA implementation in scikit-learn."""
+        viz.plot_clusters(self.data[:,1],self.classes).plot()
